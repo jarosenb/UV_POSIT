@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+//import React from 'react';
+var React = require('react');
 import ReactDOM from 'react-dom';
 //import Toggle from 'react-bootstrap-toggle';
-import * as BootstrapSelect from 'bootstrap-select'
-import 'bootstrap-select/dist/css/bootstrap-select.css'
+//import * as BootstrapSelect from 'bootstrap-select'
+//import 'bootstrap-select/dist/css/bootstrap-select.css'
 import {
     Modal, Popover, Tooltip, Button,
     OverlayTrigger, Grid, Row, Col, Clearfix, FormControl,
@@ -25,14 +26,14 @@ import numbro from 'numbro';
 import pikaday from 'pikaday';
 import Zeroclipboard from 'zeroclipboard';
 import Handsontable from 'handsontable';
-import HotTable from 'react-handsontable';
 
-import 'handsontable/dist/handsontable.full.css';
+
+//import 'handsontable/dist/handsontable.full.css';
 
 import update from 'immutability-helper';
 
 //c3 import
-import c3 from 'c3'
+var c3 = require('c3')
 import 'c3/c3.css'
 
 

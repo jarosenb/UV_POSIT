@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "compression-webpack-plugin": "^0.3.2",
     "css-loader": "^0.26.4",
     "expose-loader": "^0.7.3",
     "webpack": "^2.2.1"
