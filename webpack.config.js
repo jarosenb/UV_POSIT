@@ -1,10 +1,16 @@
 var webpack = require('webpack');
 var path = require('path');
+var fs = require('fs');
+var nodeExternals = require('webpack-node-externals');
 
 var BUILD_DIR = path.resolve(__dirname, 'app/static/dist');
 var APP_DIR = path.resolve(__dirname, 'app/static/src');
 
 var config = {
+   externals: {
+       handsontable: 'Handsontable',
+       c3: 'c3'
+},
     entry: APP_DIR + '/index.jsx',
     output: {
         path: BUILD_DIR,
@@ -14,7 +20,6 @@ var config = {
     plugins: [
         new webpack.ProvidePlugin({
             $: "jquery",
-            jQuery: "jquery"
         })
     ],
 

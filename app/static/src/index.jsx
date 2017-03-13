@@ -21,19 +21,15 @@ import 'react-select/dist/react-select.css';
 import Toggle from 'react-bootstrap-toggle';
 import 'react-bootstrap-toggle/dist/bootstrap2-toggle.css'
 
-import moment from 'moment';
-import numbro from 'numbro';
-import pikaday from 'pikaday';
-import Zeroclipboard from 'zeroclipboard';
 import Handsontable from 'handsontable';
 
 
-//import 'handsontable/dist/handsontable.full.css';
+import 'handsontable/dist/handsontable.full.css';
 
 import update from 'immutability-helper';
 
 //c3 import
-var c3 = require('c3')
+import c3 from 'c3'
 import 'c3/c3.css'
 
 
@@ -422,6 +418,7 @@ class UpdateDemoParent extends React.Component {
         )
     }
 }
+
 
 
 
