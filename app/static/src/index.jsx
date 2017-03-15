@@ -7,33 +7,34 @@ import ReactDOM from 'react-dom';
 import {
     Modal, Popover, Tooltip, Button,
     OverlayTrigger, Grid, Row, Col, Clearfix, FormControl,
-    ButtonGroup, DropdownButton, MenuItem, InputGroup
+    ButtonGroup, DropdownButton, MenuItem, InputGroup, ListGroup,
+    ListGroupItem, Glyphicon, ButtonToolbar
 } from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.css'
-
+import 'bootstrap/dist/css/bootstrap-theme.css';
 
 import Select from 'react-select';
-// Be sure to include styles at some point, probably during your bootstrapping
 import 'react-select/dist/react-select.css';
-
 
 import Toggle from 'react-bootstrap-toggle';
 import 'react-bootstrap-toggle/dist/bootstrap2-toggle.css'
 
 import Handsontable from 'handsontable';
-
-
-import 'handsontable/dist/handsontable.full.css';
+import 'handsontable/dist/handsontable.min.css';
 
 import update from 'immutability-helper';
 
 //c3 import
 import c3 from 'c3'
-import 'c3/c3.css'
+import 'c3/c3.min.css'
+
+import AwesomeComponent from './BackgroundImage.jsx'
+
+import octicons from 'octicons'
 
 
-const ParentComponent = React.createClass({
+const ParentComponent2 = React.createClass({
     getInitialState(){
         return {
             mydata: [["", "Ford", "Volvo", "Toyota", "Honda"],
@@ -101,31 +102,26 @@ const ModalContainerContainer = React.createClass({
     }
 })
 
-const ModalContainer = React.createClass({
-    getInitialState(){
-        return {
-            Form1Validated: false, Form2Validated: false,
-            formdata: {seq: 'hi', seq2: 'k'}
+class ModalContainer extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            sequence: "",
+            ppm: "",
+            tolType: "PPM"
         }
-    },
+    }
 
     save(){
         this.setState(update(this.state, {Form1Validated: {$set: true}}));
 
-    },
+    }
 
     save2(){
         this.setState(update(this.state, {Form2Validated: {$set: true}}));
         this.f2.close()
-    },
+    }
 
-
-    componentDidUpdate(){
-        console.log(this.state)
-        if (this.state.Form1Validated && this.state.Form2Validated) {
-            alert("both validated");
-        }
-    },
 
     handleChange(event){
         console.log(this.state)
@@ -137,7 +133,7 @@ const ModalContainer = React.createClass({
         console.log(fd)
         this.setState(this.state);
 
-    },
+    }
 
     render(){
 
@@ -163,7 +159,7 @@ const ModalContainer = React.createClass({
         )
     }
 
-});
+};
 
 const ModalTemplate = React.createClass({
     getInitialState() {
@@ -307,41 +303,61 @@ class ToggleArray extends React.Component {
 }
 
 
-var ValuesAsBooleansField = React.createClass({
-    displayName: 'ValuesAsBooleansField',
-    propTypes: {
-        label: React.PropTypes.string
-    },
-    getInitialState () {
-        return {
-            TolType: "PPM"
-        };
-    },
-    onChange(event) {
-        this.setState({TolType: event})
-    },
+class PPMInput extends React.Component {
+    constructor(props){
+        super(props);
+    }
+
     render () {
         return (
-            <Grid>
-                <Col md={4}>
                     <InputGroup>
-                        <FormControl type="text"/>
-                        <DropdownButton componentClass={InputGroup.Button} title={this.state.TolType}
+                        <FormControl name="inputval" type="text" value={this.props.TolValue} onChange={this.props.inputonChange}/>
+                        <DropdownButton componentClass={InputGroup.Button} title={this.props.TolType}
                                         id="bg-nested-dropdown">
-                            <MenuItem value="ppm" eventKey="PPM" onSelect={this.onChange}>PPM</MenuItem>
-                            <MenuItem value="ppm" eventKey="Da" onSelect={this.onChange}>Da</MenuItem>
+                            <MenuItem value="ppm" eventKey="PPM" onSelect={this.props.dropdownonChange}>PPM</MenuItem>
+                            <MenuItem value="ppm" eventKey="Da" onSelect={this.props.dropdownonChange}>Da</MenuItem>
                         </DropdownButton>
                     </InputGroup>
-                </Col>
-            </Grid>
-
-
-
 
 
         );
     }
-});
+};
+
+class PPMTest extends React.Component {
+    constructor(props){
+        super(props);
+        this.state={inputval: "10", toltype: "PPM"};
+        this.dropdownonChange = this.dropdownonChange.bind(this);
+        this.inputonChange = this.inputonChange.bind(this);
+    }
+
+    inputonChange(e){
+        const newState  = update(this.state, {
+            [e.target.name]: {$set: e.target.value}
+        });
+        this.setState(newState);
+    }
+
+    dropdownonChange(e){
+        const newState  = update(this.state, {
+            toltype: {$set: e}
+        });
+        this.setState(newState);
+
+    }
+
+    render(){
+        return(
+            <Grid>
+                <PPMInput TolValue={this.state.inputval}
+                          TolType={this.state.toltype}
+                          inputonChange={this.inputonChange}
+                          dropdownonChange={this.dropdownonChange}/>
+            </Grid>
+        )
+    }
+}
 
 
 const C3test = React.createClass({
@@ -382,46 +398,40 @@ const C3test = React.createClass({
     }
 });
 
-class UpdateDemoParent extends React.Component {
+
+class ModListItem extends React.Component{
     constructor(props){
-        super(props);
-        this.state={
-            s1: true,
-            s2: {
-                a: true,
-                b: true
-            }
-        };
-        this.handleChange = this.handleChange.bind(this)
-    }
-
-    handleChange(e){
-        const name = e.target.name;
-        const value = e.target.checked;
-
-        const newState = update(this.state, {
-            s2: {
-                [name]: {$set: value}
-            }
-        })
-        console.log(newState);
-        this.setState(newState)
+        super(props)
     }
 
     render(){
-        return(
-            <div>
-                cb1: <input type="checkbox" name="a" checked={this.state.s2.a} onChange={this.handleChange}/>
-                <br/>
-                cb2: <input type="checkbox" name="b" checked={this.state.s2.b} onChange={this.handleChange}/>
-            </div>
+        return (
+            <ListGroupItem key={this.props.id}>
+                {this.props.content}
+                <span className="pull-right"><button className="btn btn-xs btn-default">
+                </button></span></ListGroupItem>
         )
     }
 }
 
+class TokenTest extends React.Component{
+    constructor(props){
+        super(props);
+    }
+
+    render() {
+        return (
+             <div>
+                 <AwesomeComponent/>
+                 <ModListItem key="1" content="hi"/>
+                 <Glyphicon glyph="remove" />
+             </div>
+        )
+    }
+};
 
 
 
 
 
-ReactDOM.render(< C3test />, document.getElementById('app'));
+ReactDOM.render(< TokenTest />, document.getElementById('app'));

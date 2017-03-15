@@ -10,8 +10,8 @@ var APP_DIR = path.resolve(__dirname, 'app/static/src');
 
 var config = {
     externals: {
-
-        //reactbootstrap: 'react-bootstrap'
+        handsontable: 'Handsontable',
+        c3: 'c3'
     },
     devtool: 'source-map',
     entry: APP_DIR + '/index.jsx',
@@ -61,9 +61,9 @@ new webpack.DefinePlugin({
 
             {test: /\.css$/, loader: 'style-loader!css-loader'},
             {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader"},
-            {test: /\.(woff|woff2)$/, loader: "url-loader?prefix=font/&limit=5000"},
-            {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=application/octet-stream"},
-            {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=image/svg+xml"},
+            {test: /\.(woff|woff2)$/, loader: "file-loader"},
+            {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader"},
+            {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader"},
             {test: require.resolve('numbro'), loader: 'expose-loader?numbro'},
             {test: require.resolve('moment'), loader: 'expose-loader?moment'},
             {test: require.resolve('pikaday'), loader: 'expose-loader?Pikaday'},
