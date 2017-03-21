@@ -7,16 +7,17 @@ var BUILD_DIR = path.resolve(__dirname, 'app/static/dist');
 var APP_DIR = path.resolve(__dirname, 'app/static/src');
 
 var config = {
-   externals: {
-       handsontable: 'Handsontable',
-       c3: 'c3'
-},
+    externals: {
+        jquery: 'jQuery',
+        handsontable: 'Handsontable',
+        c3: 'c3'
+    },
     entry: APP_DIR + '/index.jsx',
     output: {
         path: BUILD_DIR,
+        publicPath: 'static/dist/',
         filename: 'bundle.js'
     },
-
 
     module: {
 
@@ -26,13 +27,17 @@ var config = {
 
             {test: /\.css$/, loader: 'style-loader!css-loader'},
 
-            {test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff'},
-      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/octet-stream'},
-      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader'},
-      {
-    test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-    loader: "url-loader?limit=1000000&mimetype=image/svg+xml"
-},
+            {
+                test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'file-loader'
+            },
+            {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader'},
+            {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader'},
+            {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "file-loader"
+            },
+            {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
             {test: require.resolve('numbro'), loader: 'expose-loader?numbro'},
             {test: require.resolve('moment'), loader: 'expose-loader?moment'},
             {test: require.resolve('pikaday'), loader: 'expose-loader?Pikaday'},

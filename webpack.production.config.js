@@ -10,6 +10,7 @@ var APP_DIR = path.resolve(__dirname, 'app/static/src');
 
 var config = {
     externals: {
+        jquery: 'jQuery',
         handsontable: 'Handsontable',
         c3: 'c3'
     },
@@ -17,6 +18,7 @@ var config = {
     entry: APP_DIR + '/index.jsx',
     output: {
         path: BUILD_DIR,
+        publicPath: 'static/dist/',
         filename: 'bundle.js'
     },
 
@@ -58,7 +60,7 @@ new webpack.DefinePlugin({
     module: {
         loaders: [
             {test: /.jsx?$/, loader: 'babel-loader', exclude: /node_modules/},
-
+            {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
             {test: /\.css$/, loader: 'style-loader!css-loader'},
             {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader"},
             {test: /\.(woff|woff2)$/, loader: "file-loader"},
