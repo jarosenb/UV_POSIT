@@ -20,7 +20,6 @@ class Sequence:
                 return False
         return True
 
-
     def mods(self):
         mod_masses = iter(re.findall(self.patt, self.raw_seq))
         mod_dict = {}

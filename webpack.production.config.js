@@ -15,7 +15,7 @@ var config = {
         c3: 'c3'
     },
     devtool: 'source-map',
-    entry: APP_DIR + '/index.jsx',
+    entry: APP_DIR + '/FragmentIntensity.jsx',
     output: {
         path: BUILD_DIR,
         publicPath: 'static/dist/',

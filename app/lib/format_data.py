@@ -41,6 +41,5 @@ def format_data(data):
     data_array_hot = np.vstack((sequence_arr, position_arr, data_array))
 
 
-    print c3_object
     return {'HOTdata': data_array_hot.T.tolist(),
             'C3data': c3_object}
