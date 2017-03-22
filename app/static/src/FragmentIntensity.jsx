@@ -26,7 +26,7 @@ import ModalTemplate from './components/ModalTemplate.jsx'
 import ModInput from './components/ModInput.jsx'
 import PPMInput from './components/PPMInput.jsx'
 import ToggleButtonContainer from './components/ToggleButtonContainer.jsx'
-import IntensityViz from './components/IntensityViz.jsx'
+import IntensityViz from './components/IntensityViz_highcharts.jsx'
 
 
 class IntensityApp extends React.Component {

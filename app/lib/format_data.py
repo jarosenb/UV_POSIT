@@ -31,15 +31,25 @@ def format_data(data):
             data_array += np.array(data['searchResult'][k])
 
 
+    HighchartsObject = {'xAxis': {'categories': [n for n in sequence]},
+                        'series': [{'name': 'All ions',
+                                   'data': data_array[0,:].tolist()},
+                                   {'name': 'N-terminal',
+                                    'data': data_array[1,:].tolist()},
+                                   {'name': 'C-terminal',
+                                    'data': data_array[2, :].tolist()}
+                                   ]}
 
     data_array = np.hstack((titles, data_array))
     data_array_c3 = data_array[0:3,:]
 
-    c3_object = {'categories': [n for n in sequence],
-                 'columns': data_array_c3.tolist()}
+    #c3_object = {'categories': [n for n in sequence],
+    #            'columns': data_array_c3.tolist()}
+
+    #c3_object = {'columns': data_array_c3.tolist()}
 
     data_array_hot = np.vstack((sequence_arr, position_arr, data_array))
 
 
     return {'HOTdata': data_array_hot.T.tolist(),
-            'C3data': c3_object}
+            'HighchartsData': HighchartsObject}

@@ -9,8 +9,7 @@ var APP_DIR = path.resolve(__dirname, 'app/static/src');
 var config = {
     externals: {
         jquery: 'jQuery',
-        handsontable: 'Handsontable',
-        c3: 'c3'
+        handsontable: 'Handsontable'
     },
     entry: {fragmentintensity: APP_DIR + '/FragmentIntensity.jsx',
             chargestate: APP_DIR + '/ChargeState.jsx'},
