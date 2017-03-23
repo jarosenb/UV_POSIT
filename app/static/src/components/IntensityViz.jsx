@@ -78,7 +78,7 @@ class IntensityViz extends React.Component {
 
     componentDidUpdate(){
         $.ajax({
-         type: 'POST',
+         type: 'GET',
          context: this,
          // Provide correct Content-Type, so that Flask will know how to process it.
          contentType: 'application/json',

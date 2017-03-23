@@ -6,6 +6,12 @@ import {
     ListGroupItem, Glyphicon, ButtonToolbar, Nav, NavItem, Well
 } from 'react-bootstrap';
 
+var core = require('mathjs/core');
+var math = core.create();
+math.import(require('mathjs/lib/type/matrix'));
+math.import(require('mathjs/lib/function/matrix'));
+math.import(require('mathjs/lib/function/arithmetic'));
+
 //HOT import
 import Handsontable from 'handsontable';
 import 'handsontable/dist/handsontable.min.css';
@@ -22,6 +28,7 @@ class IntensityViz extends React.Component {
     constructor(props) {
         super(props);
         this.dataCallback = this.dataCallback.bind(this)
+        this.updateChart = this.updateChart.bind(this)
     }
 
     componentDidMount() {
@@ -88,23 +95,58 @@ class IntensityViz extends React.Component {
 
 
     componentDidUpdate() {
-        $.ajax({
-            type: 'POST',
-            context: this,
-            // Provide correct Content-Type, so that Flask will know how to process it.
-            contentType: 'application/json',
-            // Encode data as JSON.
-            data: JSON.stringify(this.props.state),
-            // This is the type of data expected back from the server.
-            dataType: 'json',
-            url: '/updateTable',
-            success: function (data) {
-                this.dataCallback(data.result)
-            },
-            error: function () {
-                callback(false)
-            }
-        });
+
+        let apoMatrix = math.matrix(this.props.state.searchResult.apo);
+        let dataMatrix = math.zeros(math.size(apoMatrix));
+        let matrices_to_add = []
+        switch(this.props.state.activeKey){
+            case 1: //all
+                matrices_to_add = this.props.state.selectedMods.map(
+                    (m) => math.matrix(this.props.state.searchResult[m]));
+
+                matrices_to_add.forEach(
+                    (m) => dataMatrix = math.add(dataMatrix, m)
+                );
+                dataMatrix = math.add(dataMatrix, apoMatrix)
+
+                break;
+            case 2: //apo
+                dataMatrix = apoMatrix;
+                break;
+
+            case 3: //holo
+                case 1: //all
+                matrices_to_add = this.props.state.selectedMods.map(
+                    (m) => math.matrix(this.props.state.searchResult[m]));
+
+                matrices_to_add.forEach(
+                    (m) => dataMatrix = math.add(dataMatrix, m)
+                );
+
+                break;
+        }
+
+        const hcData = dataMatrix.valueOf()
+
+        this.chart.update({
+            series: [{
+                name: 'All ions',
+                data: hcData[0]
+                },
+                {name: 'N-terminal',
+                data: hcData[1]
+                },
+                {name: 'C-terminal',
+                data: hcData[2]
+                }
+            ]
+        })
+
+
+    }
+
+    updateChart(dataObject){
+        this.chart.update(dataObject)
     }
 
     render() {

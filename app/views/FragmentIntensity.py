@@ -5,16 +5,19 @@ from app.lib.format_data import format_data
 from cStringIO import StringIO
 import numpy as np
 
+
 from app import app
 
 @app.route('/updateTable', methods=['POST'])
 def updateTable():
+
     data = request.json
 
     if data['searchResult']:
         return jsonify(result=format_data(data))
     else:
-        return jsonify(result={'HOTdata': data['mydata'], 'C3data': {'columns': [[]]}})
+        return jsonify(result={'HOTdata': data['mydata'],
+                               'HighchartsData': {}})
 
 
 @app.route('/runSearch', methods=['POST'])
