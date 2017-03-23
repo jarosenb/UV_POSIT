@@ -8,6 +8,11 @@ import numpy as np
 
 from app import app
 
+@app.route('/fetchtest', methods=['POST'])
+def fetchtest():
+    data = request.json
+    return jsonify(result=data['a'] + data['b'])
+
 @app.route('/updateTable', methods=['POST'])
 def updateTable():
 
@@ -22,6 +27,9 @@ def updateTable():
 
 @app.route('/runSearch', methods=['POST'])
 def runSearch():
+
+    print request.args
+
     data = request.json
     result = get_result(data)
     return jsonify(result=result)

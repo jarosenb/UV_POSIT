@@ -2,6 +2,8 @@ import React from 'react';
 
 import ReactDOM from 'react-dom';
 
+import 'whatwg-fetch'
+
 import {
     Modal, Popover, Tooltip, Button,
     OverlayTrigger, Grid, Row, Col, Clearfix, FormControl,
@@ -101,6 +103,8 @@ class IntensityApp extends React.Component {
     }
 
     render() {
+
+
         return (
             <Grid>
                 <Row>

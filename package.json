@@ -32,14 +32,18 @@
     "bootstrap-tokenfield": "^0.12.0",
     "c3": "^0.4.11",
     "d3": "^4.7.2",
+    "es6-promise": "^4.1.0",
+    "exports-loader": "^0.6.4",
     "file-loader": "^0.10.1",
     "handsontable": "^0.31.1",
     "highcharts": "^5.0.9",
     "immutability-helper": "^2.1.2",
+    "imports-loader": "^0.7.1",
     "jquery": "^3.1.1",
     "lodash": "^4.17.4",
     "mathjs": "^3.10.0",
     "octicons": "^5.0.1",
+    "promise-polyfill": "^6.0.2",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.2",
     "react-bootstrap": "^0.30.8",
@@ -51,6 +55,7 @@
     "react-tag-input": "^4.6.2",
     "style-loader": "^0.13.2",
     "underscore": "^1.8.3",
-    "url-loader": "^0.5.8"
+    "url-loader": "^0.5.8",
+    "whatwg-fetch": "^2.0.3"
   }
 }

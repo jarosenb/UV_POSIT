@@ -96,6 +96,18 @@ class IntensityViz extends React.Component {
 
     componentDidUpdate() {
 
+              console.log('fetching...');
+        fetch('/fetchtest',{
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({a: 1, b:10}),
+            dataType: 'json',
+        })
+            .then((response) => response.json())
+            .then((response) => alert(response.result));
+
         let apoMatrix = math.matrix(this.props.state.searchResult.apo);
         let dataMatrix = math.zeros(math.size(apoMatrix));
         let matrices_to_add = []
