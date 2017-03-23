@@ -8,7 +8,7 @@ import {
     Modal, Popover, Tooltip, Button,
     OverlayTrigger, Grid, Row, Col, Clearfix, FormControl,
     ButtonGroup, DropdownButton, MenuItem, InputGroup, ListGroup,
-    ListGroupItem, Glyphicon, ButtonToolbar, Nav, NavItem, Well
+    ListGroupItem, Glyphicon, ButtonToolbar, Nav, NavItem, Well, Panel, PanelGroup, Navbar, NavDropdown
 } from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -27,8 +27,9 @@ import $ from 'jquery'
 import ModalTemplate from './components/ModalTemplate.jsx'
 import ModInput from './components/ModInput.jsx'
 import PPMInput from './components/PPMInput.jsx'
-import ToggleButtonContainer from './components/ToggleButtonContainer.jsx'
+import ToggleButtonContainer from './components/ToggleButtonContainer_noscript.jsx'
 import IntensityViz from './components/IntensityViz_highcharts.jsx'
+import PanelTemplate from './components/PanelTemplate.jsx'
 
 
 class IntensityApp extends React.Component {
@@ -64,6 +65,19 @@ class IntensityApp extends React.Component {
 
     runSearch(state) {
 
+        fetch('/runSearch', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(state),
+            dataType: 'json',
+        })
+            .then((response) => response.json())
+            .then((response) => this.runSearchCallback(response.result, state.modOptions));
+
+
+        /*
         $.ajax({
             type: 'POST',
             context: this,
@@ -82,7 +96,7 @@ class IntensityApp extends React.Component {
                 callback(false)
             }
         });
-
+        */
     }
 
     handleSelect(event) {
@@ -93,25 +107,55 @@ class IntensityApp extends React.Component {
     }
 
     onModSelect(event) {
-
         const modlist = event.map((k) => k.value);
         const newState = update(this.state, {
             selectedMods: {$set: modlist}
         });
-
         this.setState(newState)
     }
 
     render() {
 
-
         return (
+            <div>
+                 <Navbar collapseOnSelect>
+                <Navbar.Header>
+                  <Navbar.Brand>
+                    <a href="#">React-Bootstrap</a>
+                  </Navbar.Brand>
+                  <Navbar.Toggle />
+                </Navbar.Header>
+                <Navbar.Collapse>
+                  <Nav>
+                    <NavItem eventKey={1} href="#">Link</NavItem>
+                    <NavItem eventKey={2} href="#">Link</NavItem>
+                    <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
+                      <MenuItem eventKey={3.1}>Action</MenuItem>
+                      <MenuItem eventKey={3.2}>Another action</MenuItem>
+                      <MenuItem eventKey={3.3}>Something else here</MenuItem>
+                      <MenuItem divider />
+                      <MenuItem eventKey={3.3}>Separated link</MenuItem>
+                    </NavDropdown>
+                  </Nav>
+                  <Nav pullRight>
+                    <NavItem eventKey={1} href="#">Link Right</NavItem>
+                    <NavItem eventKey={2} href="#">Link Right</NavItem>
+                  </Nav>
+                </Navbar.Collapse>
+              </Navbar>
             <Grid>
+
+
+
+
+
                 <Row>
                     <Col xs={12} md={12}>
+                        <PanelGroup>
                         <Well>
                             <ModalContainer runSearch={this.runSearch}/>
                         </Well>
+                             </PanelGroup>
                     </Col>
                 </Row>
                 <Well>
@@ -140,7 +184,7 @@ class IntensityApp extends React.Component {
                 <div>
                     <IntensityViz state={this.state}/>
                 </div>
-            </Grid>
+            </Grid></div>
         )
     }
 }
@@ -152,8 +196,10 @@ class ModalContainer extends React.Component {
         this.state = {
             sequence: "",
             sequenceValidated: false,
+            sequencePanelOpen: false,
             masslist: "",
             masslistValidated: false,
+            masslistPanelOpen: false,
             tolValue: "10",
             tolType: "PPM",
             tic: "1",
@@ -183,74 +229,69 @@ class ModalContainer extends React.Component {
         this.onDropDownChange = this.onDropDownChange.bind(this);
         this.modsOnChange = this.modsOnChange.bind(this);
         this.validateSeq = this.validateSeq.bind(this);
-        this.validateMasses = this.validateMasses.bind(this)
+        this.validateSeqCallback = this.validateSeqCallback.bind(this);
+        this.validateMasses = this.validateMasses.bind(this);
+        this.validateMassesCallback = this.validateMassesCallback.bind(this);
+        this.toggleSequencePanel = this.toggleSequencePanel.bind(this);
+        this.toggleMasslistPanel = this.toggleMasslistPanel.bind(this)
     }
 
-    validateSeq(callback) {
-        //callback is function in the modal component that handles success
+    toggleSequencePanel(){
+        this.setState(update(this.state, {sequencePanelOpen: {$set: !this.state.sequencePanelOpen}}))
+    }
+    toggleMasslistPanel(){
+        this.setState(update(this.state, {masslistPanelOpen: {$set: !this.state.masslistPanelOpen}}))
+    }
+    validateSeqCallback(response){
+        console.log(response.result)
+        this.setState(update(this.state, {sequenceValidated: {$set: response},
+            sequencePanelOpen: {$set: !response.result}}));
+        if(response && this.state.masslistValidated){
+            console.log('running search...')
+            this.props.runSearch(this.state)
+        }
+    }
+    validateMassesCallback(response){
+        console.log(response.result)
+        this.setState(update(this.state, {masslistValidated: {$set: response},
+            masslistPanelOpen: {$set: !response.result}}));
+        if(response && this.state.sequenceValidated){
+            console.log('running search...')
+            this.props.runSearch(this.state)
+        }
 
-        $.ajax({
-            type: 'POST',
-            context: this,
-            // Provide correct Content-Type, so that Flask will know how to process it.
-            contentType: 'application/json',
-            // Encode data as JSON.
-            data: JSON.stringify(this.state.sequence),
-            // This is the type of data expected back from the server.
-            dataType: 'json',
-            url: '/validateSequence',
-            success: function (data) {
-                callback(data.result)
-                this.setState(update(this.state, {sequenceValidated: {$set: data.result}}));
-                if (data.result && this.state.masslistValidated) {
-                    this.props.runSearch(this.state)
-                }
+    }
+    validateSeq() {
+        fetch('/validateSequence', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
             },
-            error: function () {
-                callback(false)
-            }
-
-        });
-        // if both validated, send ajax post request to searcher
-    }
-
-
-    validateMasses(callback) {
-
-        $.ajax({
-            type: 'POST',
-            context: this,
-            // Provide correct Content-Type, so that Flask will know how to process it.
-            contentType: 'application/json',
-            // Encode data as JSON.
-            data: JSON.stringify(this.state),
-            // This is the type of data expected back from the server.
+            body: JSON.stringify(this.state.sequence),
             dataType: 'json',
-            url: '/validateData',
-            success: function (data) {
-                callback(data.result)
-                this.setState(update(this.state, {masslistValidated: {$set: data.result}}))
-                if (data.result && this.state.sequenceValidated) {
-                    this.props.runSearch(this.state)
-                }
-            },
-            error: function () {
-                callback(false)
-            }
-
-        });
+        })
+            .then((response) => response.json())
+            .then((response) => this.validateSeqCallback(response));
     }
-
-
+    validateMasses() {
+        fetch('/validateData', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(this.state),
+            dataType: 'json',
+        })
+            .then((response) => response.json())
+            .then((response) => this.validateMassesCallback(response));
+    }
     onInputChange(e) {
-
         const name = e.target.name;
         const value = e.target.value;
         this.setState(update(this.state, {
             [name]: {$set: value}
         }))
     }
-
     onDropDownChange(e) {
         const newState = update(this.state, {
             tolType: {$set: e}
@@ -258,14 +299,12 @@ class ModalContainer extends React.Component {
         this.setState(newState);
 
     }
-
     onIonToggle(name) {
         const newTval = !this.state.ions[name];
         this.setState(update(this.state, {
             ions: {[name]: {$set: newTval}}
         }));
     }
-
     axtoggle() {
         const newaxval = !this.state.ions.all_ax
         this.setState(update(this.state, {
@@ -278,7 +317,6 @@ class ModalContainer extends React.Component {
             }
         }))
     }
-
     bytoggle() {
         const newbyval = !this.state.ions.all_by
         this.setState(update(this.state, {
@@ -291,7 +329,6 @@ class ModalContainer extends React.Component {
             }
         }))
     }
-
     cztoggle() {
         const newczval = !this.state.ions.all_cz
         this.setState(update(this.state, {
@@ -302,7 +339,6 @@ class ModalContainer extends React.Component {
             }
         }))
     }
-
     modsOnChange(value) {
         const mods = value.map(
             e => e.value
@@ -332,13 +368,17 @@ class ModalContainer extends React.Component {
             modsOnChange={this.modsOnChange}/>
 
         return (
-            <div>
-                <ModalTemplate body={sequence} title="Enter Sequence"
-                               savefn={this.validateSeq}
-                               state={this.state}/>
-                <ModalTemplate body={massData} title="Enter mass/intensity data"
-                               savefn={this.validateMasses}
-                               state={this.state}/>
+            <div style={{paddingTop: 2}}>
+                <PanelTemplate togglePanel={this.toggleSequencePanel}
+                               open={this.state.sequencePanelOpen}
+                               vs={this.validateSeq}
+                               title="Edit Sequence"
+                               body={sequence}/>
+                <PanelTemplate togglePanel={this.toggleMasslistPanel}
+                               open={this.state.masslistPanelOpen}
+                               vs={this.validateMasses}
+                               title="Edit Mass List and Options"
+                               body={massData}/>
             </div>
 
         )
@@ -414,6 +454,8 @@ class MassData extends React.Component {
     }
 
 }
+
+
 
 
 ReactDOM.render(< IntensityApp/>, document.getElementById('app'));

@@ -57,7 +57,6 @@ def validateData():
 
     if xtract_array.ndim != 2:
         validated = False
-
     try:
         float(data['tolValue'])
         if data['tic'] != '':
@@ -65,8 +64,8 @@ def validateData():
         for mod in data['mods']:
             float(mod)
     except ValueError:
-        return jsonify(result=False)
 
+        return jsonify(result=False)
     return jsonify(result=validated)
 
 

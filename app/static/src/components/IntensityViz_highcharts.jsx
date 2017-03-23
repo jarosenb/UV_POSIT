@@ -47,11 +47,7 @@ class IntensityViz extends React.Component {
         this.chart = Highcharts.chart(this.highchart, {
 
             title: {
-                text: 'Solar Employment Growth by Sector, 2010-2016'
-            },
-
-            subtitle: {
-                text: 'Source: thesolarfoundation.com'
+                text: 'Fragmentation Intensity Map'
             },
 
             xAxis: {
@@ -60,7 +56,7 @@ class IntensityViz extends React.Component {
 
             yAxis: {
                 title: {
-                    text: 'Number of Employees'
+                    text: 'Normalized Intensity'
                 }
             },
             legend: {
@@ -95,19 +91,6 @@ class IntensityViz extends React.Component {
 
 
     componentDidUpdate() {
-
-              console.log('fetching...');
-        fetch('/fetchtest',{
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({a: 1, b:10}),
-            dataType: 'json',
-        })
-            .then((response) => response.json())
-            .then((response) => alert(response.result));
-
         let apoMatrix = math.matrix(this.props.state.searchResult.apo);
         let dataMatrix = math.zeros(math.size(apoMatrix));
         let matrices_to_add = []
