@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="81aca729-565c-4558-9694-86cd6a0d265a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/dist/chargestate.js" afterPath="$PROJECT_DIR$/app/static/dist/chargestate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/dist/fragmentintensity.js" afterPath="$PROJECT_DIR$/app/static/dist/fragmentintensity.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/dist/manifest.js" afterPath="$PROJECT_DIR$/app/static/dist/manifest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/dist/vendor.js" afterPath="$PROJECT_DIR$/app/static/dist/vendor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/src/components/IntensityViz.jsx" afterPath="$PROJECT_DIR$/app/static/src/components/IntensityViz.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/src/components/IntensityViz_highcharts.jsx" afterPath="$PROJECT_DIR$/app/static/src/components/IntensityViz_highcharts.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/FragmentIntensity.py" afterPath="$PROJECT_DIR$/app/views/FragmentIntensity.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-    </list>
+    <list default="true" id="81aca729-565c-4558-9694-86cd6a0d265a" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
