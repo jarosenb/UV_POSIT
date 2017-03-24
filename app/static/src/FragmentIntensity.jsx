@@ -30,6 +30,7 @@ import PPMInput from './components/PPMInput.jsx'
 import ToggleButtonContainer from './components/ToggleButtonContainer_noscript.jsx'
 import IntensityViz from './components/IntensityViz_highcharts.jsx'
 import PanelTemplate from './components/PanelTemplate.jsx'
+import AppNavbar from './components/AppNavbar.jsx'
 
 
 class IntensityApp extends React.Component {
@@ -57,10 +58,13 @@ class IntensityApp extends React.Component {
 
 
     runSearchCallback(result, modOptions) {
+        console.log(modOptions)
         const newState = update(this.state, {
-            searchResult: {$set: result}
+            searchResult: {$set: result},
+            options: {$set: modOptions},
+            selectedMods: {$set: []}
         });
-        this.setState({options: modOptions, searchResult: result})
+        this.setState(newState)
     }
 
     runSearch(state) {
@@ -76,27 +80,6 @@ class IntensityApp extends React.Component {
             .then((response) => response.json())
             .then((response) => this.runSearchCallback(response.result, state.modOptions));
 
-
-        /*
-        $.ajax({
-            type: 'POST',
-            context: this,
-            // Provide correct Content-Type, so that Flask will know how to process it.
-            contentType: 'application/json',
-            // Encode data as JSON.
-            data: JSON.stringify(state),
-            // This is the type of data expected back from the server.
-            dataType: 'json',
-            url: '/runSearch',
-            success: function (data) {
-
-                this.runSearchCallback(data.result, state.modOptions)
-            },
-            error: function () {
-                callback(false)
-            }
-        });
-        */
     }
 
     handleSelect(event) {
@@ -118,31 +101,7 @@ class IntensityApp extends React.Component {
 
         return (
             <div>
-                 <Navbar collapseOnSelect>
-                <Navbar.Header>
-                  <Navbar.Brand>
-                    <a href="#">React-Bootstrap</a>
-                  </Navbar.Brand>
-                  <Navbar.Toggle />
-                </Navbar.Header>
-                <Navbar.Collapse>
-                  <Nav>
-                    <NavItem eventKey={1} href="#">Link</NavItem>
-                    <NavItem eventKey={2} href="#">Link</NavItem>
-                    <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                      <MenuItem eventKey={3.1}>Action</MenuItem>
-                      <MenuItem eventKey={3.2}>Another action</MenuItem>
-                      <MenuItem eventKey={3.3}>Something else here</MenuItem>
-                      <MenuItem divider />
-                      <MenuItem eventKey={3.3}>Separated link</MenuItem>
-                    </NavDropdown>
-                  </Nav>
-                  <Nav pullRight>
-                    <NavItem eventKey={1} href="#">Link Right</NavItem>
-                    <NavItem eventKey={2} href="#">Link Right</NavItem>
-                  </Nav>
-                </Navbar.Collapse>
-              </Navbar>
+                <AppNavbar here="intensity"/>
             <Grid>
 
 

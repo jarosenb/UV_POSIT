@@ -12,6 +12,8 @@ math.import(require('mathjs/lib/type/matrix'));
 math.import(require('mathjs/lib/function/matrix'));
 math.import(require('mathjs/lib/function/arithmetic'));
 
+import _ from 'lodash'
+
 //HOT import
 import Handsontable from 'handsontable';
 import 'handsontable/dist/handsontable.min.css';
@@ -91,6 +93,7 @@ class IntensityViz extends React.Component {
 
 
     componentDidUpdate() {
+
         let apoMatrix = math.matrix(this.props.state.searchResult.apo);
         let dataMatrix = math.zeros(math.size(apoMatrix));
         let matrices_to_add = []
@@ -137,6 +140,15 @@ class IntensityViz extends React.Component {
             ]
         })
 
+
+        let hotData = dataMatrix.valueOf()
+        hotData = [this.props.state.searchResult.sequence]
+            .concat([_.range(1, this.props.state.searchResult.sequence.length + 1)])
+            .concat(hotData);
+        hotData = _.zip.apply(_, hotData)
+        hotData = [this.props.state.searchResult.titles].concat(hotData)
+
+        this.hot.loadData(hotData)
 
     }
 

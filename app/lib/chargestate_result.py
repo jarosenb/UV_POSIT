@@ -5,7 +5,9 @@ from app.lib.np_search import np_search
 from cStringIO import StringIO
 
 def chargestate_result(data):
-    print data
+
+
+
     xtract_data = StringIO(data['masslist'])
     xtract_array = np.genfromtxt(xtract_data, delimiter='\t')
     xtract_array = xtract_array[xtract_array[:,2].argsort()]
@@ -48,17 +50,38 @@ def chargestate_result(data):
 
             if iontype[0] in ['x', 'y', 'z']:
                 result_array_cterm[:,i-1] += search_ints
-
-    ion_labels = [str(i) + '+' for i in range(1, int(maxcharge) + 1)]
-    print ion_labels
-
-    print result_array_nterm.T.tolist()[1]
-
-    ion_array = np.array([all_ions[k] for k in selected_iontypes])
-
-    ion_hits = np_search(xtract_array[:, 2], ion_array, tol, tol_type)
+    
+    charge_labels = [str(i) + '+' for i in range(1, int(maxcharge) + 1)]
 
 
+    result_array_nterm_list = result_array_nterm.T.tolist()
+    result_array_cterm_list = result_array_cterm.T.tolist()
+
+    print 'res'
+    print result_array_nterm.tolist()
+
+    result_array_nterm_list_hot =  np.hstack(([[k] for k in seq_object.stripped_seq[:-1]], [[k] for k in range(1, len(seq_object.stripped_seq))] ,result_array_nterm))
+
+    result_array_cterm_list_hot =  np.hstack(([[k] for k in seq_object.stripped_seq[:-1]], [[k] for k in range(1, len(seq_object.stripped_seq))] ,result_array_cterm))
 
 
-    return 'hi'
+    print result_array_nterm_list_hot
+
+
+
+
+    result_array_nterm_list_hot = [['a.a.'] + ['position'] + charge_labels] + result_array_nterm_list_hot.tolist()
+    result_array_cterm_list_hot = [['a.a.'] + ['position'] + charge_labels] + result_array_cterm_list_hot.tolist()
+
+    highchartsObject_nterm = []
+    highchartsObject_cterm = []
+
+    for n, c in enumerate(charge_labels):
+        highchartsObject_nterm.append({'name': c, 'data': result_array_nterm_list[n]})
+
+    for n, c in enumerate(charge_labels):
+        highchartsObject_cterm.append({'name': c, 'data': result_array_cterm_list[n]})
+
+
+    return {'nterm_chart': highchartsObject_nterm, 'cterm_chart': highchartsObject_cterm,
+            'nterm_hot': result_array_nterm_list_hot, 'cterm_hot': result_array_cterm_list_hot}

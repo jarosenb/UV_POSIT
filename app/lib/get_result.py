@@ -63,10 +63,10 @@ def get_result(state):
         return result_array.tolist()
 
     iontype_names = map(iontype_mapfn, selected_iontypes)
-    titles = (['All ions', 'N-terminal', 'C-terminal'] + iontype_names)
+    titles = (['a.a.', 'Position','All ions', 'N-terminal', 'C-terminal'] + iontype_names)
     result['apo'] = searchArray()
     result['titles'] = titles
-    result['sequence'] = seq_object.raw_seq
+    result['sequence'] = [n for n in seq_object.raw_seq]
     for mod in state['mods']:
         result[mod] = searchArray(float(mod))
 

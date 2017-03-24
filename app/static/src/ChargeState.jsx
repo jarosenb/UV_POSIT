@@ -6,7 +6,7 @@ import {
     Modal, Popover, Tooltip, Button,
     OverlayTrigger, Grid, Row, Col, Clearfix, FormControl,
     ButtonGroup, DropdownButton, MenuItem, InputGroup, ListGroup,
-    ListGroupItem, Glyphicon, ButtonToolbar, Nav, NavItem, Well
+    ListGroupItem, Glyphicon, ButtonToolbar, Nav, NavItem, Well, PanelGroup
 } from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -19,14 +19,18 @@ import $ from 'jquery'
 import ModalTemplate from './components/ModalTemplate.jsx'
 import PPMInput from './components/PPMInput.jsx'
 import ToggleButtonContainer from './components/ToggleButtonContainer.jsx'
+import PanelTemplate from './components/PanelTemplate.jsx'
+import AppNavbar from './components/AppNavbar.jsx'
+import ChargeStateViz from './components/ChargeStateViz.jsx'
 
 
 class ChargeStateApp extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {result: []}
+        this.state = {activeKey: 1, searchResult: []}
         this.runSearch = this.runSearch.bind(this)
         this.runSearchCallback = this.runSearchCallback.bind(this)
+        this.handleSelect = this.handleSelect.bind(this);
     }
 
     runSearchCallback(result) {
@@ -34,35 +38,61 @@ class ChargeStateApp extends React.Component {
             searchResult: {$set: result}
         });
         console.log(result)
-        //this.setState({options: modOptions, searchResult: result})
+        this.setState({searchResult: result})
     }
 
     runSearch(state) {
 
-        $.ajax({
-            type: 'POST',
-            context: this,
-            // Provide correct Content-Type, so that Flask will know how to process it.
-            contentType: 'application/json',
-            // Encode data as JSON.
-            data: JSON.stringify(state),
-            // This is the type of data expected back from the server.
-            dataType: 'json',
-            url: '/chargesearch',
-            success: function (data) {
-
-                this.runSearchCallback(data.result)
+       fetch('/chargesearch', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
             },
-            error: function () {
-                callback(false)
-            }
-        });
+            body: JSON.stringify(state),
+            dataType: 'json',
+        })
+            .then((response) => response.json())
+            .then((response) => this.runSearchCallback(response.result, state.modOptions));
 
+    }
+    handleSelect(event) {
+        const newState = update(this.state, {
+            activeKey: {$set: event}
+        });
+        this.setState(newState)
     }
 
     render() {
         return (
-            <div><InputContainer runSearch = {this.runSearch}/></div>
+            <div>
+                <AppNavbar here="chargestate"/>
+                <Grid>
+                   <Row>
+                    <Col xs={12} md={12}>
+                        <PanelGroup>
+                        <Well>
+                            <InputContainer runSearch={this.runSearch}/>
+                        </Well>
+                             </PanelGroup>
+                    </Col>
+                </Row>
+                <Well>
+                    <Row>
+
+                        <Col xs={12} md={12}>
+                            <Nav bsStyle="pills" justified
+                                 activeKey={this.state.activeKey}
+                                 onSelect={this.handleSelect}>
+                                <NavItem eventKey={1}>N-terminal Ions</NavItem>
+                                <NavItem eventKey={2}>C-terminal Ions</NavItem>
+                            </Nav>
+                        </Col>
+                    </Row>
+                </Well>
+
+                <ChargeStateViz state={this.state}/>
+                </Grid>
+            </div>
         );
     }
 }
@@ -100,64 +130,63 @@ class InputContainer extends React.Component {
         this.cztoggle = this.cztoggle.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
         this.onDropDownChange = this.onDropDownChange.bind(this);
-        this.modsOnChange = this.modsOnChange.bind(this);
         this.validateSeq = this.validateSeq.bind(this);
-        this.validateMasses = this.validateMasses.bind(this)
-    }
-
-    validateSeq(callback) {
-        //callback is function in the modal component that handles success
-
-        $.ajax({
-            type: 'POST',
-            context: this,
-            // Provide correct Content-Type, so that Flask will know how to process it.
-            contentType: 'application/json',
-            // Encode data as JSON.
-            data: JSON.stringify(this.state.sequence),
-            // This is the type of data expected back from the server.
-            dataType: 'json',
-            url: '/validateSequence',
-            success: function (data) {
-                callback(data.result)
-                this.setState(update(this.state, {sequenceValidated: {$set: data.result}}));
-                if (data.result && this.state.masslistValidated) {
-                    this.props.runSearch(this.state)
-                }
-            },
-            error: function () {
-                callback(false)
-            }
-
-        });
-        // if both validated, send ajax post request to searcher
+        this.validateSeqCallback = this.validateSeqCallback.bind(this);
+        this.validateMasses = this.validateMasses.bind(this);
+        this.validateMassesCallback = this.validateMassesCallback.bind(this);
+        this.toggleSequencePanel = this.toggleSequencePanel.bind(this);
+        this.toggleMasslistPanel = this.toggleMasslistPanel.bind(this)
     }
 
 
-    validateMasses(callback) {
+    toggleSequencePanel(){
+        this.setState(update(this.state, {sequencePanelOpen: {$set: !this.state.sequencePanelOpen}}))
+    }
+    toggleMasslistPanel(){
+        this.setState(update(this.state, {masslistPanelOpen: {$set: !this.state.masslistPanelOpen}}))
+    }
+    validateSeqCallback(response){
+        console.log(response.result)
+        this.setState(update(this.state, {sequenceValidated: {$set: response},
+            sequencePanelOpen: {$set: !response.result}}));
+        if(response && this.state.masslistValidated){
+            console.log('running search...')
+            this.props.runSearch(this.state)
+        }
+    }
+    validateMassesCallback(response){
+        console.log(response.result)
+        this.setState(update(this.state, {masslistValidated: {$set: response},
+            masslistPanelOpen: {$set: !response.result}}));
+        if(response && this.state.sequenceValidated){
+            console.log('running search...')
+            this.props.runSearch(this.state)
+        }
 
-        $.ajax({
-            type: 'POST',
-            context: this,
-            // Provide correct Content-Type, so that Flask will know how to process it.
-            contentType: 'application/json',
-            // Encode data as JSON.
-            data: JSON.stringify(this.state),
-            // This is the type of data expected back from the server.
-            dataType: 'json',
-            url: '/validateChargeData',
-            success: function (data) {
-                callback(data.result)
-                this.setState(update(this.state, {masslistValidated: {$set: data.result}}))
-                if (data.result && this.state.sequenceValidated) {
-                    this.props.runSearch(this.state)
-                }
+    }
+    validateSeq() {
+        fetch('/validateSequence', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
             },
-            error: function () {
-                callback(false)
-            }
-
-        });
+            body: JSON.stringify(this.state.sequence),
+            dataType: 'json',
+        })
+            .then((response) => response.json())
+            .then((response) => this.validateSeqCallback(response));
+    }
+    validateMasses() {
+        fetch('/validateChargeData', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(this.state),
+            dataType: 'json',
+        })
+            .then((response) => response.json())
+            .then((response) => this.validateMassesCallback(response));
     }
 
 
@@ -249,14 +278,20 @@ class InputContainer extends React.Component {
             modsOnChange={this.modsOnChange}/>
 
 
-        return (<div><ModalTemplate body={sequence}
-                                    title="sequence"
-                                    savefn={this.validateSeq}
-                                    state={this.state}/>
-            <ModalTemplate body={massData}
-                                    title="Masses"
-                                    savefn={this.validateMasses}
-                                    state={this.state}/>
+        return (<div><div style={{paddingTop: 2}}>
+            <div style={{paddingBottom: 5}}>
+                <PanelTemplate togglePanel={this.toggleSequencePanel}
+                               open={this.state.sequencePanelOpen}
+                               vs={this.validateSeq}
+                               title="Edit Sequence"
+                               body={sequence}/>
+            </div>
+                <PanelTemplate togglePanel={this.toggleMasslistPanel}
+                               open={this.state.masslistPanelOpen}
+                               vs={this.validateMasses}
+                               title="Edit Mass List and Options"
+                               body={massData}/>
+            </div>
         </div>)
     }
 }
@@ -291,11 +326,11 @@ class MassData extends React.Component {
         return (
             <Row>
                 <Col xs={6} md={6}>
-                    <b>Mass/Intensity list (tab-delimited):</b>
+                    <b>Mass and m/z Data from ProsightPC THRASH (tab-delimited):</b>
                     <FormControl name="masslist"
                                  value={this.props.state.masslist}
                                  componentClass="textarea"
-                                 style={{height: 335, resize: 'none'}}
+                                 style={{height: 205, resize: 'none'}}
                                  onChange={this.props.onInputChange}/>
 
                 </Col>

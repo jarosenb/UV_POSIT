@@ -12,7 +12,8 @@ var config = {
         handsontable: 'Handsontable'
     },
     entry: {fragmentintensity: APP_DIR + '/FragmentIntensity.jsx',
-            chargestate: APP_DIR + '/ChargeState.jsx'},
+            chargestate: APP_DIR + '/ChargeState.jsx',
+            wildcard: APP_DIR + '/Wildcard.jsx'},
     output: {
         path: BUILD_DIR,
         publicPath: 'static/dist/',
