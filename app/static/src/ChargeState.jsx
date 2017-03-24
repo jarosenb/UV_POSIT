@@ -49,7 +49,7 @@ class ChargeStateApp extends React.Component {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(state),
-            dataType: 'json',
+            dataType: 'json'
         })
             .then((response) => response.json())
             .then((response) => this.runSearchCallback(response.result, state.modOptions));

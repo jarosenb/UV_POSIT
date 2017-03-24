@@ -17,5 +17,3 @@ celery = make_celery(app)
 from app.views import FragmentIntensity, ChargeState, Wildcard
 
 
-
-
