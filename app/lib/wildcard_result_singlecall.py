@@ -54,14 +54,14 @@ def wildcard_result_singlecall(self, state):
         chunk_results.append(chunk_sums)
 
         self.update_state(state='PROGRESS',
-                          meta={'current': i, 'total': 10,
+                          meta={'current': i, 'total': 100,
                                 'status': "processing chunk {} of 100".format(i)})
 
     final_result = np.concatenate(chunk_results)
 
     print time.time() - t1
 
-    return {'current': 10, 'total': 10, 'status': 'Task completed!',
+    return {'current': 100, 'total': 100, 'status': 'Task completed!',
             'result': final_result.tolist()}
 
 

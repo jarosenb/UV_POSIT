@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="81aca729-565c-4558-9694-86cd6a0d265a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/wildcard_result_singlecall.py" afterPath="$PROJECT_DIR$/app/lib/wildcard_result_singlecall.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/src/Wildcard.jsx" afterPath="$PROJECT_DIR$/app/static/src/Wildcard.jsx" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -78,8 +77,8 @@
       <file leaf-file-name="wildcard_result_singlecall.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/lib/wildcard_result_singlecall.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="57" column="43" lean-forward="true" selection-start-line="57" selection-start-column="43" selection-end-line="57" selection-end-column="43" />
+            <state relative-caret-position="265">
+              <caret line="57" column="58" lean-forward="false" selection-start-line="57" selection-start-column="58" selection-end-line="57" selection-end-column="58" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -1134,8 +1133,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/lib/wildcard_result_singlecall.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="57" column="43" lean-forward="true" selection-start-line="57" selection-start-column="43" selection-end-line="57" selection-end-column="43" />
+        <state relative-caret-position="265">
+          <caret line="57" column="58" lean-forward="false" selection-start-line="57" selection-start-column="58" selection-end-line="57" selection-end-column="58" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
