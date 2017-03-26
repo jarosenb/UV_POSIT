@@ -46,6 +46,8 @@ def wildcard_result_singlecall(self, state):
 
     chunk_results = []
 
+    print 'flag before search'
+
     for i, chunk in enumerate(ions_with_mods_chunked):
 
         chunk_hits = np_search(xtract_array[:, 0], chunk, tol, tol_type)
@@ -56,6 +58,8 @@ def wildcard_result_singlecall(self, state):
         self.update_state(state='PROGRESS',
                           meta={'current': i, 'total': 100,
                                 'status': "processing chunk {} of 100".format(i)})
+
+    print 'flag after search'
 
     final_result = np.concatenate(chunk_results)
 
