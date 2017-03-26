@@ -18,7 +18,6 @@ def long_task(self, data):
 
 @app.route('/longtask', methods=['POST'])
 def longtask():
-    print request.json
     task = long_task.delay(request.json)
     return jsonify({'taskID': task.id,
                     'statusURL': url_for('taskstatus', task_id=task.id),
@@ -43,7 +42,7 @@ def taskstatus(task_id):
         }
         if 'result' in task.info:
             response['result'] = task.info['result']
-            print task.info['result']
+
     else:
         # something went wrong in the background job
         response = {
