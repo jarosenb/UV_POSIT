@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81aca729-565c-4558-9694-86cd6a0d265a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/lib/wildcard_result_singlecall.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dump.rdb" afterPath="$PROJECT_DIR$/dump.rdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/chargestate_result.py" afterPath="$PROJECT_DIR$/app/lib/chargestate_result.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/get_result.py" afterPath="$PROJECT_DIR$/app/lib/get_result.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/wildcard_result.py" afterPath="$PROJECT_DIR$/app/lib/wildcard_result.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/dist/chargestate.js" afterPath="$PROJECT_DIR$/app/static/dist/chargestate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/dist/fragmentintensity.js" afterPath="$PROJECT_DIR$/app/static/dist/fragmentintensity.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/dist/vendor.js" afterPath="$PROJECT_DIR$/app/static/dist/vendor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/dist/wildcard.js" afterPath="$PROJECT_DIR$/app/static/dist/wildcard.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/wildcard_result_singlecall.py" afterPath="$PROJECT_DIR$/app/lib/wildcard_result_singlecall.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/src/Wildcard.jsx" afterPath="$PROJECT_DIR$/app/static/src/Wildcard.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Wildcard.py" afterPath="$PROJECT_DIR$/app/views/Wildcard.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -51,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Wildcard.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Wildcard.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/static/src/Wildcard.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="142" column="34" lean-forward="true" selection-start-line="142" selection-start-column="34" selection-end-line="142" selection-end-column="34" />
+            <state relative-caret-position="111">
+              <caret line="106" column="9" lean-forward="true" selection-start-line="106" selection-start-column="9" selection-end-line="106" selection-end-column="9" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -85,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wildcard_result_singlecall.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wildcard_result_singlecall.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/lib/wildcard_result_singlecall.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+            <state relative-caret-position="295">
+              <caret line="57" column="43" lean-forward="true" selection-start-line="57" selection-start-column="43" selection-end-line="57" selection-end-column="43" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -163,8 +153,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>runSear</find>
-      <find>options</find>
       <find>dataCall</find>
       <find>console.</find>
       <find>link</find>
@@ -187,12 +175,14 @@
       <find>aaa</find>
       <find>Input</find>
       <find>rendering</find>
-      <find>print</find>
       <find>mods</find>
       <find>masslist</find>
       <find>sequence</find>
       <find>runSearch</find>
+      <find>gett</find>
+      <find>print</find>
       <find>result</find>
+      <find>console.log</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -249,8 +239,8 @@
         <option value="$PROJECT_DIR$/app/lib/get_result.py" />
         <option value="$PROJECT_DIR$/app/lib/wildcard_result.py" />
         <option value="$PROJECT_DIR$/app/views/Wildcard.py" />
-        <option value="$PROJECT_DIR$/app/lib/wildcard_result_singlecall.py" />
         <option value="$PROJECT_DIR$/app/static/src/Wildcard.jsx" />
+        <option value="$PROJECT_DIR$/app/lib/wildcard_result_singlecall.py" />
       </list>
     </option>
   </component>
@@ -1132,22 +1122,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/lib/wildcard_result_singlecall.py">
+    <entry file="file://$PROJECT_DIR$/app/static/src/Wildcard.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+        <state relative-caret-position="111">
+          <caret line="106" column="9" lean-forward="true" selection-start-line="106" selection-start-column="9" selection-end-line="106" selection-end-column="9" />
           <folding>
-            <element signature="e#0#33#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/src/Wildcard.jsx">
+    <entry file="file://$PROJECT_DIR$/app/lib/wildcard_result_singlecall.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="142" column="34" lean-forward="true" selection-start-line="142" selection-start-column="34" selection-end-line="142" selection-end-column="34" />
+        <state relative-caret-position="295">
+          <caret line="57" column="43" lean-forward="true" selection-start-line="57" selection-start-column="43" selection-end-line="57" selection-end-column="43" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#33#0" expanded="true" />
           </folding>
         </state>
       </provider>

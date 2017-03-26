@@ -76,7 +76,6 @@ class TaskProgressContainer extends React.Component {
     }
 
     render() {
-        console.log(this.props.tasks)
 
         const taskbars = this.props.tasks.map((t)=> <TaskProgressBar key={t.taskID} task={t}/> )
 
@@ -99,11 +98,11 @@ class TaskProgressBar extends React.Component {
     pollTaskCallback(response, task){
         let percent = parseInt(response.current * 100 / response.total)
         this.setState({progress: percent, status: response.status})
-        console.log(response)
+
         if(response.state != 'PENDING' && response.state != 'PROGRESS'){
             if('result' in response){
                 this.setState({completed: true})
-                console.log(response.result)
+
             }
         }
 
@@ -191,12 +190,11 @@ class InputContainer extends React.Component {
         this.setState(update(this.state, {masslistPanelOpen: {$set: !this.state.masslistPanelOpen}}))
     }
     validateSeqCallback(response){
-        console.log(response.result)
+
         this.setState(update(this.state, {sequenceValidated: {$set: response},
             sequencePanelOpen: {$set: !response.result}}));
     }
     validateMassesCallback(response){
-        console.log(response.result)
         this.setState(update(this.state, {masslistValidated: {$set: response},
             masslistPanelOpen: {$set: !response.result}}));
     }

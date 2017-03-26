@@ -42,7 +42,7 @@ def wildcard_result_singlecall(self, state):
     # add mods to the generated ion masses
     ions_with_mods = np.tile(all_ions_array, (num_searches, 1, 1)) + mods_to_search
 
-    ions_with_mods_chunked = np.array_split(ions_with_mods, 10)
+    ions_with_mods_chunked = np.array_split(ions_with_mods, 100)
 
     chunk_results = []
 
@@ -55,7 +55,7 @@ def wildcard_result_singlecall(self, state):
 
         self.update_state(state='PROGRESS',
                           meta={'current': i, 'total': 10,
-                                'status': "processing chunk {} of 10".format(i)})
+                                'status': "processing chunk {} of 100".format(i)})
 
     final_result = np.concatenate(chunk_results)
 
