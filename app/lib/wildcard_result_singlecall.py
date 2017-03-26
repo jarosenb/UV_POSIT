@@ -36,30 +36,37 @@ def wildcard_result_singlecall(self, state):
     increment = float(state['increment'])
 
     num_searches = int((lastMass - firstMass) / increment) + 1
+
+    num_chunks = num_searches / 1000 + 1
+
+    print num_chunks
+
     # convert mods to column vector
     mods_to_search = (np.arange(num_searches) * increment + firstMass)[np.newaxis, np.newaxis].T
 
+    mods_to_search_chunked = np.array_split(mods_to_search, num_chunks)
     # add mods to the generated ion masses
-    ions_with_mods = np.tile(all_ions_array, (num_searches, 1, 1)) + mods_to_search
-
-    ions_with_mods_chunked = np.array_split(ions_with_mods, 100)
 
     chunk_results = []
+    current_chunk = 0
 
-    print 'flag before search'
+    for mass_chunk in mods_to_search_chunked:
+        chunk_size = mass_chunk.shape[0]
+        chunk_searchspace = np.tile(all_ions_array, (chunk_size, 1, 1)) + mass_chunk
 
-    for i, chunk in enumerate(ions_with_mods_chunked):
+        chunk_hits = np_search(xtract_array[:, 0], chunk_searchspace, tol, tol_type)
 
-        chunk_hits = np_search(xtract_array[:, 0], chunk, tol, tol_type)
         chunk_sums = np.sum(chunk_hits >= 0, axis=2)
 
         chunk_results.append(chunk_sums)
 
-        self.update_state(state='PROGRESS',
-                          meta={'current': i, 'total': 100,
-                                'status': "processing chunk {} of 100".format(i)})
+        current_chunk += 1
 
-    print 'flag after search'
+        self.update_state(state='PROGRESS',
+                          meta={'current': current_chunk, 'total': num_chunks,
+                                'status': "processing chunk {} of {}".format(current_chunk, num_chunks)})
+
+
 
     final_result = np.concatenate(chunk_results)
 
