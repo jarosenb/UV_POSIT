@@ -29,19 +29,19 @@ import AppNavbar from './components/AppNavbar.jsx'
 class WildcardApp extends React.Component{
     constructor(props){
         super(props)
-        this.state = {taskURLs: []}
+        this.state = {tasks: []}
         this.runSearch = this.runSearch.bind(this)
         this.runSearchCallback = this.runSearchCallback.bind(this)
     }
 
     runSearchCallback(response){
 
-        const newState = update(this.state, {taskURLs: {$push: ['hi']}})
-        console.log(newState)
-        this.setState(update(this.state, {taskURLs: {$push: [response.Location]}}))
+        this.setState(update(this.state, {tasks: {$push: [{taskID: response.taskID,
+            statusURL: response.statusURL,
+            resultURL: response.resultURL}]}}))
     }
 
-    runSearch(){
+    runSearch(state){
         console.log('sending request');
 
         fetch('/longtask',{
@@ -49,7 +49,7 @@ class WildcardApp extends React.Component{
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify('hello'),
+            body: JSON.stringify(state),
             dataType: 'json',
         }).then((response) => response.json())
             .then((response)=> this.runSearchCallback(response))
@@ -62,7 +62,7 @@ class WildcardApp extends React.Component{
                 <AppNavbar here="wildcard"/>
                 <Grid>
                     <InputContainer runSearch = {this.runSearch}/>
-                    <TaskProgressContainer tasks = {this.state.taskURLs}/>
+                    <TaskProgressContainer tasks = {this.state.tasks}/>
                 </Grid>
             </div>
         )
@@ -78,7 +78,7 @@ class TaskProgressContainer extends React.Component {
     render() {
         console.log(this.props.tasks)
 
-        const taskbars = this.props.tasks.map((t)=> <TaskProgressBar key={t} taskID={t}/> )
+        const taskbars = this.props.tasks.map((t)=> <TaskProgressBar key={t.taskID} task={t}/> )
 
         return (
             <div>
@@ -91,47 +91,49 @@ class TaskProgressContainer extends React.Component {
 class TaskProgressBar extends React.Component {
     constructor(props){
         super(props)
-        this.state={progress: 0, status: 'booting'}
+        this.state={progress: 0, status: 'booting', completed: false}
         this.pollTask = this.pollTask.bind(this)
         this.pollTaskCallback = this.pollTaskCallback.bind(this)
     }
 
-    pollTaskCallback(response, taskID){
+    pollTaskCallback(response, task){
         let percent = parseInt(response.current * 100 / response.total)
         this.setState({progress: percent, status: response.status})
-
+        console.log(response)
         if(response.state != 'PENDING' && response.state != 'PROGRESS'){
             if('result' in response){
+                this.setState({completed: true})
                 console.log(response.result)
             }
         }
 
         else {
-            setTimeout(()=>this.pollTask(taskID), 2000)
+            console.log('going again')
+            setTimeout(()=>this.pollTask(task), 2000)
         }
 
     }
 
-    pollTask(taskID){
-        fetch(taskID, {
+    pollTask(task){
+        fetch(task.statusURL, {
             headers: {
                 'content-type': 'application/json'
             },
             dataType: 'json'
         }).then((response)=>response.json())
-            .then((response)=>this.pollTaskCallback(response, taskID))
+            .then((response)=>this.pollTaskCallback(response, task))
     }
 
     componentDidMount(){
-        this.pollTask(this.props.taskID)
+        this.pollTask(this.props.task)
     }
 
     render(){
         return(
             <Well>
-                {this.props.taskID}
                 {this.state.status}
                 <ProgressBar now={this.state.progress} label={`${this.state.progress}%`} srOnly />
+                {this.state.completed ? <a href={this.props.task.resultURL}> EVERY MORNING I WAKE UP AND OPEN PALM SLAM A VHS INTO THE SLOT. ITS CHRONICLES OF RIDDICK AND RIGHT THEN AND THERE I START DOING THE MOVES ALONGSIDE WITH THE MAIN CHARACTER, RIDDICK. I DO EVERY MOVE AND I DO EVERY MOVE HARD. MAKIN WHOOSHING SOUNDS WHEN I SLAM DOWN SOME NECRO BASTARDS OR EVEN WHEN I MESS UP TECHNIQUE. NOT MANY CAN SAY THEY ESCAPED THE GALAXYS MOST DANGEROUS PRISON. I CAN. I SAY IT AND I SAY IT OUTLOUD EVERYDAY TO PEOPLE IN MY COLLEGE CLASS AND ALL THEY DO IS PROVE PEOPLE IN COLLEGE CLASS CAN STILL BE IMMATURE JEKRS. AND IVE LEARNED ALL THE LINES AND IVE LEARNED HOW TO MAKE MYSELF AND MY APARTMENT LESS LONELY BY SHOUTING EM ALL. 2 HOURS INCLUDING WIND DOWN EVERY MORNIng</a>: undefined}
             </Well>
         )
     }
@@ -192,20 +194,11 @@ class InputContainer extends React.Component {
         console.log(response.result)
         this.setState(update(this.state, {sequenceValidated: {$set: response},
             sequencePanelOpen: {$set: !response.result}}));
-        if(response && this.state.masslistValidated){
-            console.log('running search...')
-            this.props.runSearch(this.state)
-        }
     }
     validateMassesCallback(response){
         console.log(response.result)
         this.setState(update(this.state, {masslistValidated: {$set: response},
             masslistPanelOpen: {$set: !response.result}}));
-        if(response && this.state.sequenceValidated){
-            console.log('running search...')
-            this.props.runSearch(this.state)
-        }
-
     }
     validateSeq() {
         fetch('/validateSequence', {
@@ -340,7 +333,7 @@ class InputContainer extends React.Component {
             </div>
                 </Well>
                 <Button bsStyle={this.state.sequenceValidated && this.state.masslistValidated ? 'success': 'default'}
-                        onClick={this.props.runSearch}
+                        onClick={()=>this.props.runSearch(this.state)}
                         disabled = {(!this.state.sequenceValidated || !this.state.masslistValidated)}
                         block>Submit search to server</Button>
             </PanelGroup>

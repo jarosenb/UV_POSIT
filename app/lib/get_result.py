@@ -11,19 +11,15 @@ def get_result(state):
     xtract_data = StringIO(state['masslist'])
     xtract_array = np.genfromtxt(xtract_data, delimiter='\t')
 
-    #print xtract_array
-
-    #print state['ions']
-
     ion_types = ['a', 'ap', 'b', 'c', 'x', 'xp', 'y', 'ym', 'ymm', 'z']
     def iontype_mapfn(i):
         return i.replace('p', '+').replace('m', '-')
-    #  iontype_map = {'ap': 'a+', 'xp': 'x+', 'ym': 'y-', 'ymm': 'y--'}
+
 
     selected_iontypes = [ion for ion in ion_types if state['ions'][ion]]
 
     seq_object = Sequence(state['sequence'])
-    #print seq_object.mods()
+
 
     tol = float(state['tolValue'])
     tic = float(state['tic'])

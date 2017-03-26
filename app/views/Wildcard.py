@@ -1,36 +1,28 @@
-from flask import Flask, render_template, url_for, request, jsonify
+from flask import Flask, render_template, url_for, request, jsonify, make_response
 from cStringIO import StringIO
+import csv
 import numpy as np
 import random
 import time
+
+from app.lib.wildcard_result import wildcard_result
+from app.lib.wildcard_result_singlecall import wildcard_result_singlecall
+
 from app import app, celery
 
 
 @celery.task(bind=True)
-def long_task(self):
-    """Background task that runs a long function with progress reports."""
-    verb = ['Starting up', 'Booting', 'Repairing', 'Loading', 'Checking']
-    adjective = ['master', 'radiant', 'silent', 'harmonic', 'fast']
-    noun = ['solar array', 'particle reshaper', 'cosmic ray', 'orbiter', 'bit']
-    message = ''
-    total = random.randint(10, 50)
-    for i in range(total):
-        if not message or random.random() < 0.25:
-            message = '{0} {1} {2}...'.format(random.choice(verb),
-                                              random.choice(adjective),
-                                              random.choice(noun))
-        self.update_state(state='PROGRESS',
-                          meta={'current': i, 'total': total,
-                                'status': message})
-        time.sleep(1)
-    return {'current': 100, 'total': 100, 'status': 'Task completed!',
-            'result': 42}
+def long_task(self, data):
+    return wildcard_result_singlecall(self, data)
+
 
 @app.route('/longtask', methods=['POST'])
 def longtask():
-    task = long_task.apply_async()
-    return jsonify({'Location': url_for('taskstatus',
-                                                  task_id=task.id)})
+    print request.json
+    task = long_task.delay(request.json)
+    return jsonify({'taskID': task.id,
+                    'statusURL': url_for('taskstatus', task_id=task.id),
+                    'resultURL': url_for('wildcardCSV', task_id=task.id)})
 
 @app.route('/status/<task_id>')
 def taskstatus(task_id):
@@ -51,6 +43,7 @@ def taskstatus(task_id):
         }
         if 'result' in task.info:
             response['result'] = task.info['result']
+            print task.info['result']
     else:
         # something went wrong in the background job
         response = {
@@ -69,3 +62,18 @@ def validateWildcardData():
 @app.route('/wildcard')
 def wildcard():
     return render_template('wildcard.html')
+
+@app.route('/wildcardCSV/<task_id>')
+def wildcardCSV(task_id):
+    task = long_task.AsyncResult(task_id)
+    result = task.info['result']
+    mylist = result
+    si = StringIO()
+    cw = csv.writer(si)
+    cw.writerows(mylist)
+
+    response = make_response(si.getvalue())
+    response.headers['Content-Disposition'] = 'attachment; filename=mycsv.csv'
+    response.mimetype = 'text/csv'
+
+    return response

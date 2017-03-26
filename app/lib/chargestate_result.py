@@ -6,8 +6,6 @@ from cStringIO import StringIO
 
 def chargestate_result(data):
 
-
-
     xtract_data = StringIO(data['masslist'])
     xtract_array = np.genfromtxt(xtract_data, delimiter='\t')
     xtract_array = xtract_array[xtract_array[:,2].argsort()]
