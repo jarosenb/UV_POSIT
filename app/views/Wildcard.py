@@ -13,7 +13,7 @@ from app import app, celery
 
 @celery.task(bind=True)
 def long_task(self, data):
-    return wildcard_result_singlecall(self, data)
+    return wildcard_result(self, data)
 
 
 @app.route('/longtask', methods=['POST'])
@@ -55,8 +55,35 @@ def taskstatus(task_id):
 
 @app.route('/validateWildcardData', methods=['POST'])
 def validateWildcardData():
-    print 'doing it!'
-    return jsonify(result=True)
+
+    validated = True
+
+    data = request.json
+    xtract_data = StringIO(data['masslist'])
+
+    try:
+        xtract_array = np.genfromtxt(xtract_data, delimiter='\t')
+    except ValueError:
+        return jsonify(result=False)
+
+    if xtract_array.ndim != 2:
+        validated = False
+    try:
+        float(data['tolValue'])
+        float(data['firstMass'])
+        float(data['lastMass'])
+        float(data['increment'])
+    except ValueError:
+        return jsonify(result=False)
+
+    if float(data['firstMass']) > float(data['lastMass']):
+        validated = False
+
+    if float(data['increment']) > float(data['lastMass']) - float(data['firstMass']):
+        validated = False
+
+    return jsonify(result=validated)
+
 
 @app.route('/wildcard')
 def wildcard():

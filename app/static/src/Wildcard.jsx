@@ -155,17 +155,17 @@ class InputContainer extends React.Component {
             ions: {
                 a: true,
                 ap: true,
-                b: false,
-                c: false,
+                b: true,
+                c: true,
                 x: true,
                 xp: true,
-                y: false,
-                ym: false,
-                ymm: false,
-                z: false,
+                y: true,
+                ym: true,
+                ymm: true,
+                z: true,
                 all_ax: true,
-                all_by: false,
-                all_cz: false
+                all_by: true,
+                all_cz: true
             },
         };
         this.onIonToggle = this.onIonToggle.bind(this);

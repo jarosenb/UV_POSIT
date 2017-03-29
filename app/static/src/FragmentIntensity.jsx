@@ -328,16 +328,20 @@ class ModalContainer extends React.Component {
 
         return (
             <div style={{paddingTop: 2}}>
+                <div style={{paddingBottom: 5}}>
                 <PanelTemplate togglePanel={this.toggleSequencePanel}
                                open={this.state.sequencePanelOpen}
                                vs={this.validateSeq}
                                title="Edit Sequence"
                                body={sequence}/>
+                </div>
+                <div>
                 <PanelTemplate togglePanel={this.toggleMasslistPanel}
                                open={this.state.masslistPanelOpen}
                                vs={this.validateMasses}
                                title="Edit Mass List and Options"
                                body={massData}/>
+                </div>
             </div>
 
         )
