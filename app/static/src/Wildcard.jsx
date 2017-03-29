@@ -144,9 +144,9 @@ class InputContainer extends React.Component {
         super(props)
         this.state = {
             sequence: "",
-            sequenceValidated: true,
+            sequenceValidated: false,
             masslist: "",
-            masslistValidated: true,
+            masslistValidated: false,
             tolValue: "10",
             tolType: "PPM",
             firstMass: "",
