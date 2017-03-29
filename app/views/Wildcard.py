@@ -13,7 +13,7 @@ from app import app, celery
 
 @celery.task(bind=True)
 def long_task(self, data):
-    return wildcard_result(self, data)
+    return wildcard_result_singlecall(self, data)
 
 
 @app.route('/longtask', methods=['POST'])

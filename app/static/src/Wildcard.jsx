@@ -90,7 +90,7 @@ class TaskProgressContainer extends React.Component {
 class TaskProgressBar extends React.Component {
     constructor(props){
         super(props)
-        this.state={progress: 0, status: 'booting', completed: false}
+        this.state={progress: 0, status: 'Waiting for response from server...', completed: false}
         this.pollTask = this.pollTask.bind(this)
         this.pollTaskCallback = this.pollTaskCallback.bind(this)
     }
