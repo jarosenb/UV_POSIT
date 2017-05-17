@@ -20,6 +20,8 @@ def get_result(state):
 
     seq_object = Sequence(state['sequence'])
 
+    remove_mode = state['removeDuplicates']
+    print remove_mode
 
     tol = float(state['tolValue'])
     tic = float(state['tic'])
@@ -33,6 +35,8 @@ def get_result(state):
 
 
         ion_hits = np_search(xtract_array[:, 0], ion_array, tol, tol_type)
+
+        hit_positions = ion_hits[ion_hits >= 0]
 
         ion_ints = xtract_array[:, 1][ion_hits]
         ion_ints[ion_hits < 0] = 0
@@ -56,15 +60,22 @@ def get_result(state):
         # result_array = np.hstack((titles, result_array))
         seq_list = [n for n in seq_object.raw_seq]
 
-        return result_array.tolist()
+        return result_array.tolist(), hit_positions
 
     iontype_names = map(iontype_mapfn, selected_iontypes)
     titles = (['a.a.', 'Position','All ions', 'N-terminal', 'C-terminal'] + iontype_names)
-    result['apo'] = searchArray()
+    result_apo = searchArray()
+    result['apo'] = result_apo[0]
+    if remove_mode:
+        xtract_array = np.delete(xtract_array, result_apo[1], axis=0)
+
     result['titles'] = titles
     result['sequence'] = [n for n in seq_object.raw_seq]
     for mod in state['mods']:
-        result[mod] = searchArray(float(mod))
+        result_mod = searchArray(float(mod))
+        result[mod] = result_mod[0]
+        if remove_mode:
+            xtract_array = np.delete(xtract_array, result_mod[1], axis=0)
 
     #  print result
 

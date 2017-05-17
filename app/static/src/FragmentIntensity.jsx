@@ -162,6 +162,7 @@ class ModalContainer extends React.Component {
             tolValue: "10",
             tolType: "PPM",
             tic: "1",
+            removeDuplicates: false,
             ions: {
                 a: true,
                 ap: true,
@@ -246,7 +247,7 @@ class ModalContainer extends React.Component {
     }
     onInputChange(e) {
         const name = e.target.name;
-        const value = e.target.value;
+        const value = e.target.type == 'checkbox' ? e.target.checked : e.target.value;
         this.setState(update(this.state, {
             [name]: {$set: value}
         }))
@@ -409,6 +410,9 @@ class MassData extends React.Component {
                     </div>
                     <b>Ligand Masses:</b>
                     <ModInput state={this.props.state} modsOnChange={this.props.modsOnChange}/>
+                    Run in duplicate ion removal mode? {' '}
+                    <input type="checkbox" name="removeDuplicates"
+                           checked={this.props.state.removeDuplicates} onChange={this.props.onInputChange}/>
 
 
                 </Col>

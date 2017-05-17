@@ -52,9 +52,6 @@ class IntensityViz extends React.Component {
                 text: 'Fragmentation Intensity Map'
             },
 
-            xAxis: {
-                categories: ['hey', 'hi', 'hello']
-            },
 
             yAxis: {
                 title: {

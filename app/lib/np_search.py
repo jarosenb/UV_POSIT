@@ -5,7 +5,7 @@ Parameters:
 
     l: 1D numpy array object containing the spectrum (peak list) that we want to search through.
 
-    k: 1D numpy array object containing the masses we want to search for.
+    k: numpy array object of arbitrary dimension, containing the masses we want to search for.
 
     ppm: ppm cutoff. Masses in k that are not present in l within tolerance will be rejected.
 
@@ -17,7 +17,7 @@ Returns:
 import numpy as np
 
 
-def np_search(l, k, tol, tol_type='ppm'):
+def np_search(l, k, tol=10, tol_type='PPM'):
     ln = np.size(l)
     # Run numpy's built-in binary search to generate indices idx
     idx = np.searchsorted(l, k)
