@@ -1,6 +1,10 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: osx-64
+libiconv=1.14=0
+libxml2=2.9.4=0
+libxslt=1.1.29=0
+lxml=3.7.3=py27_0
 nomkl=1.0=0
 numpy=1.12.0=py27_nomkl_0
 openssl=1.0.2k=1

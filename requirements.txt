@@ -7,9 +7,12 @@ gunicorn==19.7.0
 itsdangerous==0.24
 Jinja2==2.9.5
 kombu==4.0.2
+lxml==3.7.3
 MarkupSafe==1.0
 numpy==1.12.0
 psycopg2==2.7
+pymzml==0.7.7
+pyteomics==3.4.1
 pytz==2016.10
 redis==2.10.5
 scikit-learn==0.18.1
