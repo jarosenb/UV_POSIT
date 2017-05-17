@@ -20,6 +20,8 @@ def get_result(state):
 
     seq_object = Sequence(state['sequence'])
 
+
+
     remove_mode = state['removeDuplicates']
     print remove_mode
 
@@ -70,7 +72,7 @@ def get_result(state):
         xtract_array = np.delete(xtract_array, result_apo[1], axis=0)
 
     result['titles'] = titles
-    result['sequence'] = [n for n in seq_object.raw_seq]
+    result['sequence'] = [n for n in seq_object.stripped_seq]
     for mod in state['mods']:
         result_mod = searchArray(float(mod))
         result[mod] = result_mod[0]
