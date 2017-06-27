@@ -46,7 +46,8 @@ class IntensityApp extends React.Component {
 
             options: [],
             selectedMods: [],
-            searchResult: {}
+            searchResult: {search_successful: false},
+            disableSelection: false
         };
 
         this.handleSelect = this.handleSelect.bind(this);
@@ -57,12 +58,13 @@ class IntensityApp extends React.Component {
     }
 
 
-    runSearchCallback(result, modOptions) {
+    runSearchCallback(result, modOptions, removeDupes) {
         console.log(modOptions)
         const newState = update(this.state, {
             searchResult: {$set: result},
             options: {$set: modOptions},
-            selectedMods: {$set: []}
+            selectedMods: {$set: removeDupes? modOptions.map((k) => k.value) : []},
+            disableSelection: {$set: removeDupes}
         });
         this.setState(newState)
     }
@@ -78,7 +80,7 @@ class IntensityApp extends React.Component {
             dataType: 'json',
         })
             .then((response) => response.json())
-            .then((response) => this.runSearchCallback(response.result, state.modOptions));
+            .then((response) => this.runSearchCallback(response.result, state.modOptions, state.removeDuplicates));
 
     }
 
@@ -124,9 +126,9 @@ class IntensityApp extends React.Component {
                             <Nav bsStyle="pills" justified
                                  activeKey={this.state.activeKey}
                                  onSelect={this.handleSelect}>
-                                <NavItem eventKey={1}>All Ions</NavItem>
-                                <NavItem eventKey={2}><i>apo</i> Ions</NavItem>
-                                <NavItem eventKey={3}><i>holo</i> Ions</NavItem>
+                                <NavItem disabled={!this.state.searchResult['search_successful']} eventKey={1}>All Ions</NavItem>
+                                <NavItem disabled={!this.state.searchResult['search_successful']} eventKey={2}><i>apo</i> Ions</NavItem>
+                                <NavItem disabled={!this.state.searchResult['search_successful']} eventKey={3}><i>holo</i> Ions</NavItem>
                             </Nav>
                         </Col>
 
@@ -134,6 +136,7 @@ class IntensityApp extends React.Component {
                             <Select multi placeholder="Select modifications to include"
                                     value={this.state.selectedMods}
                                     options={this.state.options}
+                                    disabled={this.state.disableSelection}
                                     onChange={this.onModSelect}/>
                         </Col>
 

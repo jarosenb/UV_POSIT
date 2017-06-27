@@ -14,7 +14,8 @@ var config = {
     entry: {fragmentintensity: APP_DIR + '/FragmentIntensity.jsx',
             chargestate: APP_DIR + '/ChargeState.jsx',
             wildcard: APP_DIR + '/Wildcard.jsx',
-            hem: APP_DIR + '/HEM.jsx'},
+            hem: APP_DIR + '/HEM.jsx',
+            readme: APP_DIR + '/Readme.jsx'},
     output: {
         path: BUILD_DIR,
         publicPath: 'static/dist/',

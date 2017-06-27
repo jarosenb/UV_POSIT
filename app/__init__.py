@@ -14,6 +14,6 @@ app.config.update(
 celery = make_celery(app)
 
 
-from app.views import FragmentIntensity, ChargeState, Wildcard, HEM
+from app.views import FragmentIntensity, ChargeState, Wildcard, HEM, Readme
 
 

@@ -16,11 +16,12 @@ from app import app
 
 @app.route('/getform', methods=['POST'])
 def getform():
-
-
+    print 'getting form'
+    print request.form['tolType']
     result = hem_result(request)
 
-    print result[0]
+
+    print result
     return jsonify(response=result)
 
 @app.route('/hem')

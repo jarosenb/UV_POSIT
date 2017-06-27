@@ -27,7 +27,7 @@ import ChargeStateViz from './components/ChargeStateViz.jsx'
 class ChargeStateApp extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {activeKey: 1, searchResult: []}
+        this.state = {activeKey: 1, searchResult: {search_successful: false}}
         this.runSearch = this.runSearch.bind(this)
         this.runSearchCallback = this.runSearchCallback.bind(this)
         this.handleSelect = this.handleSelect.bind(this);
@@ -83,8 +83,8 @@ class ChargeStateApp extends React.Component {
                             <Nav bsStyle="pills" justified
                                  activeKey={this.state.activeKey}
                                  onSelect={this.handleSelect}>
-                                <NavItem eventKey={1}>N-terminal Ions</NavItem>
-                                <NavItem eventKey={2}>C-terminal Ions</NavItem>
+                                <NavItem disabled={!this.state.searchResult['search_successful']} eventKey={1}>N-terminal Ions</NavItem>
+                                <NavItem disabled={!this.state.searchResult['search_successful']} eventKey={2}>C-terminal Ions</NavItem>
                             </Nav>
                         </Col>
                     </Row>

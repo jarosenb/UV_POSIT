@@ -73,6 +73,7 @@ def get_result(state):
 
     result['titles'] = titles
     result['sequence'] = [n for n in seq_object.stripped_seq]
+    result['search_successful'] = True
     for mod in state['mods']:
         result_mod = searchArray(float(mod))
         result[mod] = result_mod[0]

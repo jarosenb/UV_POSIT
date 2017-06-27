@@ -18,7 +18,7 @@ class AppNavbar extends React.Component {
                 <Navbar>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <a href="#">UVPD-Utils</a>
+                            <a href="#">UV-POSIT</a>
                         </Navbar.Brand>
                         <Navbar.Toggle />
                     </Navbar.Header>
@@ -30,6 +30,8 @@ class AppNavbar extends React.Component {
                             <NavItem active={this.props.here == 'wildcard'} href="/wildcard">Wildcard Search
                             </NavItem>
                             <NavItem active={this.props.here == 'hem'} href="/hem">HEM
+                            </NavItem>
+                            <NavItem active={this.props.here == 'readme'} href="/readme">About/Readme
                             </NavItem>
                         </Nav>
                     </Navbar.Collapse>

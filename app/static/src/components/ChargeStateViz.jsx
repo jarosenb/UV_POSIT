@@ -40,7 +40,11 @@ class ChargeStateViz extends React.Component {
     },
 
             title: {
-                text: 'Fragmentation Intensity Map'
+                text: 'Charge State Contributions'
+            },
+
+            credits: {
+                enabled: false
             },
 
             xAxis: {
@@ -96,8 +100,12 @@ class ChargeStateViz extends React.Component {
                 text: 'Fragmentation Intensity Map'
             },
 
+            credits: {
+                enabled: false
+            },
+
             xAxis: {
-                categories: ['hey', 'hi', 'hello']
+                categories: this.props.state.searchResult['sequence']
             },
 
             yAxis: {
@@ -148,7 +156,6 @@ class ChargeStateViz extends React.Component {
     }
 
 
-}
-;
+};
 
 export default ChargeStateViz

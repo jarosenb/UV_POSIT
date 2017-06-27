@@ -52,10 +52,13 @@ class IntensityViz extends React.Component {
                 text: 'Fragmentation Intensity Map'
             },
 
+            credits: {
+                enabled: false
+            },
 
             yAxis: {
                 title: {
-                    text: 'Normalized Intensity'
+                    text: 'Normalized Abundance'
                 }
             },
             legend: {
@@ -67,15 +70,15 @@ class IntensityViz extends React.Component {
             series: [{
                 name: 'All ions',
                 color: '#1f77b4',
-                data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175],
+                data: [],
             }, {
                 name: 'N-terminal',
-                data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434],
+                data: [],
                 color: '#ff7f0e',
                 visible: false
             }, {
                 name: 'C-terminal',
-                data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387],
+                data: [],
                 color: '#2ca02c',
                 visible: false
             }]
@@ -90,7 +93,7 @@ class IntensityViz extends React.Component {
 
 
     componentDidUpdate() {
-
+        console.log(this.props.state.selectedMods)
         let apoMatrix = math.matrix(this.props.state.searchResult.apo);
         let dataMatrix = math.zeros(math.size(apoMatrix));
         let matrices_to_add = []
@@ -124,6 +127,9 @@ class IntensityViz extends React.Component {
         const hcData = dataMatrix.valueOf()
 
         this.chart.update({
+
+             xAxis: {
+                    categories: this.props.state.searchResult['sequence'], title: {text: 'Residue'}},
             series: [{
                 name: 'All ions',
                 data: hcData[0]

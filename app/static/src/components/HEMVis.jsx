@@ -34,6 +34,9 @@ class HEMVis extends React.Component {
                     charge: d.charge,
                     res: d.res,
                     hem: d.hem,
+                    hem_hb: d.hem_hb,
+                    hem_nhb: d.hem_nhb,
+                    score: d.score,
                     warn: d.warn,
                     button: 'Visualize Fitting'
                 }
@@ -41,7 +44,7 @@ class HEMVis extends React.Component {
 
             afterSelection: (row, col) => {
                 console.log("row: " + row + " col: " + col)
-                if(col === 5 && row > 0){
+                if(col === 8 && row > 0){
                 this.setState(update(this.props.state, {
                     selectedRow: {$set: row}
                 }))}
@@ -64,6 +67,10 @@ class HEMVis extends React.Component {
                 text: 'Isotope Fitting'
             },
 
+            credits: {
+                enabled: false
+            },
+
             yAxis: {
                 title: {
                     text: 'Normalized Intensity'
@@ -75,7 +82,7 @@ class HEMVis extends React.Component {
                 verticalAlign: 'middle'
             },
 
-            series: [{name: '1+', data: []}]
+            series: [{name: 'Experimental', data: []},{name: 'Theoretical', data: []} ]
 
         });
     }
@@ -100,6 +107,9 @@ class HEMVis extends React.Component {
                     charge: d.charge,
                     res: d.res,
                     hem: d.hem,
+                    hem_hb: d.hem_hb,
+                    hem_nhb: d.hem_nhb,
+                    score: d.score,
                     warn: d.warn,
                     button: 'Click to Visualize'
                 }

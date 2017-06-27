@@ -6,7 +6,7 @@ class Sequence:
     def __init__(self, raw_seq):
         self.raw_seq = raw_seq.replace(" ", "").replace("\r", "").replace("\n", "")
 
-        self.patt = '\(([0-9\.\-\+]+)\)'
+        self.patt = '\(([0-9\.\-\+]+?)\)'
         self.stripped_seq = re.sub(self.patt, '', self.raw_seq).upper()
 
     def validate(self):
@@ -32,3 +32,6 @@ class Sequence:
                 mod_dict[len(mstring)-1] = float(mod_masses.next())
 
         return mod_dict
+
+
+print Sequence("SIG(0.1)SLAK(1.2)").mods()
