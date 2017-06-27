@@ -2,35 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81aca729-565c-4558-9694-86cd6a0d265a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/static/src/Readme.jsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/readme.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/Readme.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dump.rdb" afterPath="$PROJECT_DIR$/dump.rdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/__init__.py" afterPath="$PROJECT_DIR$/app/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/HEM/hem_findpeaks.py" afterPath="$PROJECT_DIR$/app/lib/HEM/hem_findpeaks.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/HEM/hem_result.py" afterPath="$PROJECT_DIR$/app/lib/HEM/hem_result.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/HEM/isotope_function.py" afterPath="$PROJECT_DIR$/app/lib/HEM/isotope_function.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/Sequence.py" afterPath="$PROJECT_DIR$/app/lib/Sequence.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/chargestate_result.py" afterPath="$PROJECT_DIR$/app/lib/chargestate_result.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/get_result.py" afterPath="$PROJECT_DIR$/app/lib/get_result.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/dist/chargestate.js" afterPath="$PROJECT_DIR$/app/static/dist/chargestate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/dist/fragmentintensity.js" afterPath="$PROJECT_DIR$/app/static/dist/fragmentintensity.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/dist/hem.js" afterPath="$PROJECT_DIR$/app/static/dist/hem.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/dist/manifest.js" afterPath="$PROJECT_DIR$/app/static/dist/manifest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/dist/vendor.js" afterPath="$PROJECT_DIR$/app/static/dist/vendor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/dist/wildcard.js" afterPath="$PROJECT_DIR$/app/static/dist/wildcard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/src/ChargeState.jsx" afterPath="$PROJECT_DIR$/app/static/src/ChargeState.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/src/FragmentIntensity.jsx" afterPath="$PROJECT_DIR$/app/static/src/FragmentIntensity.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/src/HEM.jsx" afterPath="$PROJECT_DIR$/app/static/src/HEM.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/src/Wildcard.jsx" afterPath="$PROJECT_DIR$/app/static/src/Wildcard.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/src/components/AppNavbar.jsx" afterPath="$PROJECT_DIR$/app/static/src/components/AppNavbar.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/src/components/ChargeStateViz.jsx" afterPath="$PROJECT_DIR$/app/static/src/components/ChargeStateViz.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/src/components/HEMVis.jsx" afterPath="$PROJECT_DIR$/app/static/src/components/HEMVis.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/src/components/IntensityViz_highcharts.jsx" afterPath="$PROJECT_DIR$/app/static/src/components/IntensityViz_highcharts.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/HEM.py" afterPath="$PROJECT_DIR$/app/views/HEM.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack.config.js" afterPath="$PROJECT_DIR$/webpack.config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/hem.html" afterPath="$PROJECT_DIR$/app/templates/hem.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -96,8 +69,8 @@
       <file leaf-file-name="HEM.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/static/src/HEM.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1122">
-              <caret line="138" column="24" lean-forward="false" selection-start-line="138" selection-start-column="19" selection-end-line="138" selection-end-column="24" />
+            <state relative-caret-position="-320">
+              <caret line="96" column="14" lean-forward="true" selection-start-line="96" selection-start-column="14" selection-end-line="96" selection-end-column="14" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -105,7 +78,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HEMVis.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="hem.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/templates/hem.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webpack.config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="38" column="84" lean-forward="false" selection-start-line="38" selection-start-column="83" selection-end-line="38" selection-end-column="84" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HEMVis.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/static/src/components/HEMVis.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="338">
@@ -151,18 +144,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Wildcard.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/static/src/Wildcard.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="128" column="0" lean-forward="true" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -199,13 +180,13 @@
       <find>nterm_ch</find>
       <find>Fragment</find>
       <find>Warn</find>
-      <find>result[</find>
       <find>Visual</find>
       <find>HEM</find>
       <find>sequ</find>
       <find>warn</find>
       <find>Visua</find>
       <find>Click</find>
+      <find>result[</find>
       <find>click</find>
     </findStrings>
   </component>
@@ -236,7 +217,6 @@
         <option value="$PROJECT_DIR$/app/views/Wildcard.py" />
         <option value="$PROJECT_DIR$/app/lib/wildcard_result_singlecall.py" />
         <option value="$PROJECT_DIR$/app/views/hem.py" />
-        <option value="$PROJECT_DIR$/app/templates/hem.html" />
         <option value="$PROJECT_DIR$/app/static/src/components/IntensityViz.jsx" />
         <option value="$PROJECT_DIR$/app/lib/HEM/centroid_peaks.py" />
         <option value="$PROJECT_DIR$/app/lib/HEM/compute_averagine_composition.py" />
@@ -266,6 +246,7 @@
         <option value="$PROJECT_DIR$/app/static/src/HEM.jsx" />
         <option value="$PROJECT_DIR$/app/lib/HEM/hem_result.py" />
         <option value="$PROJECT_DIR$/app/static/src/components/HEMVis.jsx" />
+        <option value="$PROJECT_DIR$/app/templates/hem.html" />
       </list>
     </option>
   </component>
@@ -379,10 +360,6 @@
               <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -402,29 +379,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webpack_testing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webpack_testing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
+              <option name="myItemId" value="dist" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -443,28 +398,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webpack_testing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webpack_testing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HEM" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -847,13 +780,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="59" y="23" width="1381" height="858" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32898173" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20626631" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32898173" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32898173" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33550915" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23629242" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3129201" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32898173" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297336" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -932,7 +866,7 @@
         <state relative-caret-position="3225">
           <caret line="247" column="4" lean-forward="false" selection-start-line="247" selection-start-column="4" selection-end-line="252" selection-end-column="11" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -983,14 +917,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="13" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/dist/hem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-228">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1087,7 +1013,7 @@
         <state relative-caret-position="1950">
           <caret line="130" column="58" lean-forward="false" selection-start-line="130" selection-start-column="58" selection-end-line="130" selection-end-column="58" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1105,7 +1031,7 @@
         <state relative-caret-position="365">
           <caret line="85" column="97" lean-forward="false" selection-start-line="85" selection-start-column="97" selection-end-line="85" selection-end-column="97" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1184,13 +1110,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/src/HEM.jsx">
+    <entry file="file://$PROJECT_DIR$/app/static/dist/hem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="138" column="24" lean-forward="false" selection-start-line="138" selection-start-column="19" selection-end-line="138" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-323">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="38" column="84" lean-forward="false" selection-start-line="38" selection-start-column="83" selection-end-line="38" selection-end-column="84" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1201,6 +1133,24 @@
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/src/HEM.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-320">
+          <caret line="96" column="14" lean-forward="true" selection-start-line="96" selection-start-column="14" selection-end-line="96" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/hem.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
