@@ -99,7 +99,7 @@ def wildcardCSV(task_id):
     cw.writerows(mylist)
 
     response = make_response(si.getvalue())
-    response.headers['Content-Disposition'] = 'attachment; filename=mycsv.csv'
+    response.headers['Content-Disposition'] = 'attachment; filename=iterative_result.csv'
     response.mimetype = 'text/csv'
 
     return response
