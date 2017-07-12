@@ -361,6 +361,7 @@ class Sequence extends React.Component {
         return (
             <Row>
                 <Col xs={12} md={12}>
+                    Enter amino acid sequence with parenthetical modifications, e.g. PEP(44.01)TIDE
                     <FormControl name="sequence"
                                  value={this.props.state.sequence}
                                  componentClass="textarea"

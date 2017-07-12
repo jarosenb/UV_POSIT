@@ -31,19 +31,19 @@ def hem_result(request):
 
     peaks_relmax = peaks[relmax_positions]
 
-    print peaks_relmax[:,1] > 0
+    # print peaks_relmax[:,1] > 0
 
     peaks_relmax_filtered = peaks_relmax[peaks_relmax[:,1] >= min_signal]
 
 
     #print peaks_relmax
 
-    print np.shape(peaks_relmax)
+    # print np.shape(peaks_relmax)
     #print np.shape(peaks_relmax_filtered)
 
     sequence = SequenceHEM(input_sequence)
 
-    print sequence.aion_composition(3)
+    # print sequence.aion_composition(3)
 
     charge = int(request.form['charge'])
     cutoff = float(request.form['score'])
@@ -62,7 +62,7 @@ def hem_result(request):
                     'hem_hb': 'HB value',
                     'hem_nhb': 'Non-HB value',
                     'score': 'Score',
-                    'warn': 'Warnings2'
+                    'warn': 'Warnings'
 
                 }]
 

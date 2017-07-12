@@ -97,7 +97,7 @@ class ChargeStateViz extends React.Component {
     },
 
             title: {
-                text: 'Fragmentation Intensity Map'
+                text: 'Charge State Visualization'
             },
 
             credits: {

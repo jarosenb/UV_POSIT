@@ -64,7 +64,4 @@ class SequenceHEM:
         print comp0
         return comp0
 
-from HEM.isotope_function import isotopefn
-print isotopefn(SequenceHEM('SIGS(Br)LAK').aion_composition(7))
-print isotopefn(SequenceHEM('SIGSLAK').aion_composition(7))
 

@@ -27,11 +27,13 @@ class AppNavbar extends React.Component {
                             <NavItem active={this.props.here == 'intensity'} href="/">Fragment Intensity</NavItem>
                             <NavItem active={this.props.here == 'chargestate'} href="/chargestate">Charge State
                                 Analysis</NavItem>
-                            <NavItem active={this.props.here == 'wildcard'} href="/wildcard">Wildcard Search
+                            <NavItem active={this.props.here == 'wildcard'} href="/wildcard">Iterative Search
                             </NavItem>
                             <NavItem active={this.props.here == 'hem'} href="/hem">HEM
                             </NavItem>
-                            <NavItem active={this.props.here == 'readme'} href="/readme">About/Readme
+                            <NavItem active={this.props.here == 'readme'}
+                                     href="https://jarosenb.gitbooks.io/uv_posit/content/"
+                                     target="_blank">About/Readme
                             </NavItem>
                         </Nav>
                     </Navbar.Collapse>
