@@ -9,7 +9,7 @@ import {
     ListGroupItem, Glyphicon, ButtonToolbar, Nav, NavItem, Well, PanelGroup
 } from 'react-bootstrap';
 
-import 'bootstrap/dist/css/bootstrap.css'
+//import 'bootstrap/dist/css/bootstrap.css'
 import 'react-select/dist/react-select.css';
 
 import 'react-bootstrap-toggle/dist/bootstrap2-toggle.css'

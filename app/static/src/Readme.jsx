@@ -12,7 +12,7 @@ import {
     Panel, PanelGroup, Navbar, NavDropdown, ProgressBar
 } from 'react-bootstrap';
 
-import 'bootstrap/dist/css/bootstrap.css'
+//import 'bootstrap/dist/css/bootstrap.css'
 
 import {AutoAffix} from 'react-overlays'
 

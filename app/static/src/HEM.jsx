@@ -11,7 +11,7 @@ import {
     ListGroupItem, Glyphicon, ButtonToolbar, Nav, NavItem, Well, Panel, PanelGroup, Navbar, NavDropdown, ProgressBar
 } from 'react-bootstrap';
 
-import 'bootstrap/dist/css/bootstrap.css'
+//import 'bootstrap/dist/css/bootstrap.css'
 
 
 import Select from 'react-select';
