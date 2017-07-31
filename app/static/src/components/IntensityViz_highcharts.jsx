@@ -49,7 +49,7 @@ class IntensityViz extends React.Component {
         this.chart = Highcharts.chart(this.highchart, {
 
             title: {
-                text: 'Fragmentation Intensity Map'
+                text: 'Fragment Abundance Map'
             },
 
             credits: {

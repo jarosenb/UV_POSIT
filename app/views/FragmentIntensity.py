@@ -53,9 +53,9 @@ def validateData():
     try:
         xtract_array = np.genfromtxt(xtract_data, delimiter='\t')
     except ValueError:
-        return jsonify(result=False)
+        validated = False
 
-    if xtract_array.ndim != 2:
+    if xtract_array.ndim != 2 or xtract_array.shape[1] != 2:
         validated = False
     try:
         float(data['tolValue'])

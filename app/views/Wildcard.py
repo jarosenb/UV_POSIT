@@ -66,7 +66,7 @@ def validateWildcardData():
     except ValueError:
         return jsonify(result=False)
 
-    if xtract_array.ndim != 2:
+    if xtract_array.ndim != 2 or xtract_array.shape[1] != 2:
         validated = False
     try:
         float(data['tolValue'])

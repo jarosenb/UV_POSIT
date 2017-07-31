@@ -18,7 +18,7 @@ class AppNavbar extends React.Component {
                 <Navbar>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <a href="#">UV-POSIT</a>
+                            <a href="">UV-POSIT</a>
                         </Navbar.Brand>
                         <Navbar.Toggle />
                     </Navbar.Header>
@@ -29,7 +29,7 @@ class AppNavbar extends React.Component {
                                 Analysis</NavItem>
                             <NavItem active={this.props.here == 'wildcard'} href="/wildcard">Iterative Search
                             </NavItem>
-                            <NavItem active={this.props.here == 'hem'} href="/hem">HEM
+                            <NavItem active={this.props.here == 'hem'} href="/hem">Hydrogen Elimination Monitoring
                             </NavItem>
                             <NavItem active={this.props.here == 'readme'}
                                      href="https://jarosenb.gitbooks.io/uv_posit/content/"

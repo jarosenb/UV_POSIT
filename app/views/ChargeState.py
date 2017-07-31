@@ -23,10 +23,20 @@ def validateChargeData():
     data = request.json
     xtract_data = StringIO(data['masslist'])
 
+    try:
+        xtract_array = np.genfromtxt(xtract_data, delimiter='\t')
+    except ValueError:
+        validated = False
 
-    xtract_array = np.genfromtxt(xtract_data, delimiter='\t')
+    if xtract_array.ndim != 2 or xtract_array.shape[1] != 6:
+        validated = False
 
-    return jsonify(result=True)
+    try:
+        float(data['tolValue'])
+    except:
+        validated = False
+
+    return jsonify(result=validated)
 
 
 

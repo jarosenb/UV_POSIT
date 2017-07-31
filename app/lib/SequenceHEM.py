@@ -61,7 +61,7 @@ class SequenceHEM:
                         comp0[element] += modComp[element]
                     else:
                         comp0[element] = modComp[element]
-        print comp0
+        #print comp0
         return comp0
 
 

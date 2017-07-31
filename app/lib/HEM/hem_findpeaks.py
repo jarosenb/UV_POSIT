@@ -12,6 +12,7 @@ from app.lib.np_search import np_search
 from app.lib.ion_masses import ion_masses
 
 from pyteomics import mass
+from decimal import Decimal
 
 # interesting masses: 946.96523243(alact), 1423.7(insulin), 1200.0854(insulin), 1842 (enfuv), 1635.8033(insul), 1148(ins)
 
@@ -129,11 +130,11 @@ def find_aion(sequence, n, charge, peaks, cutoff, tolValue, tolType):
         'pos': n,
         'charge': charge,
         'res': sequence.stripped_seq[n-1],
-        'hem': hemval,
-        'score': score,
+        'hem': np.round(hemval, 2),
+        'score': '{:.2E}'.format(score),
         'peaksExp': fitting_ints.tolist(),
         'peaksTheo': fitted_dist.tolist(),
-        'masses': np.max(search_mzs, axis=0).tolist(),
+        'masses': np.round(np.max(search_mzs, axis=0), 4).tolist(),
         'hem_hb': aion_database[sequence.stripped_seq[n-1]][0],
         'hem_nhb': aion_database[sequence.stripped_seq[n-1]][1],
         'warn': 'none'

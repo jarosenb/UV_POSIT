@@ -37,14 +37,14 @@ class HEMVis extends React.Component {
                     hem_hb: d.hem_hb,
                     hem_nhb: d.hem_nhb,
                     score: d.score,
-                    warn: d.warn,
+                    //warn: d.warn,
                     button: 'Visualize Fitting'
                 }
             }),
 
             afterSelection: (row, col) => {
                 console.log("row: " + row + " col: " + col)
-                if(col === 8 && row > 0){
+                if(col === 7 && row > 0){
                 this.setState(update(this.props.state, {
                     selectedRow: {$set: row}
                 }))}
@@ -76,13 +76,18 @@ class HEMVis extends React.Component {
                     text: 'Normalized Intensity'
                 }
             },
+            xAxis: {
+                title: {
+                    text: 'm/z'
+                }
+            },
             legend: {
                 layout: 'vertical',
                 align: 'right',
                 verticalAlign: 'middle'
             },
 
-            series: [{name: 'Experimental', data: []},{name: 'Theoretical', data: []} ]
+            series: [{name: 'Experimental', data: []},{name: 'Fitted', data: []} ]
 
         });
     }
@@ -97,9 +102,11 @@ class HEMVis extends React.Component {
         }
 
         this.chart.addSeries({name: 'Experimental', data: expList, stack: 'Experimental'}, false)
-        this.chart.addSeries({name: 'Theoretical', data: theoList, stack: 'Theoretical'})
+        this.chart.addSeries({name: 'Fitted', data: theoList, stack: 'Fitted'})
 
         this.chart.update({xAxis: {categories: masses}})
+
+        console.log(this.props.state.data);
 
         this.hot.loadData(this.props.state.data.map(function (d) {
                 return {
@@ -110,7 +117,7 @@ class HEMVis extends React.Component {
                     hem_hb: d.hem_hb,
                     hem_nhb: d.hem_nhb,
                     score: d.score,
-                    warn: d.warn,
+                    //warn: d.warn,
                     button: 'Click to Visualize'
                 }
             }))

@@ -46,7 +46,7 @@
     "promise-polyfill": "^6.0.2",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.2",
-    "react-bootstrap": "^0.30.8",
+    "react-bootstrap": "^0.30.10",
     "react-bootstrap-select": "^0.14.0",
     "react-bootstrap-toggle": "^2.0.4",
     "react-dom": "^15.4.2",
