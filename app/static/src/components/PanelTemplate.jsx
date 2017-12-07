@@ -30,7 +30,7 @@ class PanelTemplate extends React.Component {
             <Button block onClick={this.props.togglePanel} bsStyle="default">Close</Button>
                     </Col>
                     <Col xs={2} md={2}>
-                <Button block bsStyle="primary" onClick={this.props.vs}>Save</Button>
+                <Button block bsStyle="primary" onClick={this.props.vs}>Validate</Button>
                     </Col>
                 </Row>
             </div>
