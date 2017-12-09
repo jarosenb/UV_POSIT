@@ -28,7 +28,7 @@ class ChargeStateViz extends React.Component {
                 ["", "", "", "", ""],
                 ["", "", "", "", ""]
             ],
-            rowHeaders: true,
+            rowHeaders: false,
             colHeaders: true,
             stretchH: 'all',
             preventOverflow: 'horizontal'

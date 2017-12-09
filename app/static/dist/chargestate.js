@@ -289,7 +289,7 @@ var ChargeStateViz = function (_React$Component) {
         value: function componentDidMount() {
             this.hot = new _handsontable2.default(this.hotDiv, {
                 data: [["", "", "", "", ""], ["", "", "", "", ""], ["", "", "", "", ""], ["", "", "", "", ""]],
-                rowHeaders: true,
+                rowHeaders: false,
                 colHeaders: true,
                 stretchH: 'all',
                 preventOverflow: 'horizontal'

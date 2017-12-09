@@ -309,13 +309,17 @@ var IntensityViz = function (_React$Component) {
         value: function componentDidMount() {
             this.hot = new _handsontable2.default(this.hotDiv, {
                 data: [["", "", "", "", ""], ["", "", "", "", ""], ["", "", "", "", ""], ["", "", "", "", ""]],
-                rowHeaders: true,
+                rowHeaders: false,
                 colHeaders: true,
                 stretchH: 'all',
                 preventOverflow: 'horizontal'
             });
 
             this.chart = _highcharts2.default.chart(this.highchart, {
+
+                chart: {
+                    type: 'column'
+                },
 
                 title: {
                     text: 'Fragment Abundance Map'
@@ -406,7 +410,7 @@ var IntensityViz = function (_React$Component) {
             this.chart.update({
 
                 xAxis: {
-                    categories: this.props.state.searchResult['sequence'], title: { text: 'Residue' } },
+                    categories: this.props.state.searchResult['labels'], title: { text: 'Residue' } },
                 series: [{
                     name: 'All ions',
                     data: hcData[0]

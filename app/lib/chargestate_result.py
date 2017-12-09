@@ -98,4 +98,4 @@ def chargestate_result(data):
 
     return {'nterm_chart': highchartsObject_nterm, 'cterm_chart': highchartsObject_cterm,
             'nterm_hot': result_array_nterm_list_hot, 'cterm_hot': result_array_cterm_list_hot,
-            'search_successful': True, 'sequence': [n for n in seq_object.stripped_seq]}
+            'search_successful': True, 'sequence': [i + 1 for i in range(len(seq_object.stripped_seq))]}
