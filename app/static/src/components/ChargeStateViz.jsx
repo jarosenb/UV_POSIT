@@ -105,12 +105,15 @@ class ChargeStateViz extends React.Component {
             },
 
             xAxis: {
-                categories: this.props.state.searchResult['sequence']
+                categories: this.props.state.searchResult['sequence'],
+                title: {
+                    text: 'Residue Position'
+                }
             },
 
             yAxis: {
                 title: {
-                    text: 'Normalized Intensity'
+                    text: 'Normalized Abundance'
                 }
             },
             legend: {

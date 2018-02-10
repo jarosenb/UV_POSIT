@@ -73,7 +73,7 @@ class HEMVis extends React.Component {
 
             yAxis: {
                 title: {
-                    text: 'Normalized Intensity'
+                    text: 'Normalized Abundance'
                 }
             },
             xAxis: {
