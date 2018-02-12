@@ -72,6 +72,7 @@ def get_result(state):
         xtract_array = np.delete(xtract_array, result_apo[1], axis=0)
 
     result['titles'] = titles
+    result['labels'] = [i + 1 for i in range(len(seq_object.stripped_seq))] # [n for n in seq_object.stripped_seq]
     result['sequence'] = [n for n in seq_object.stripped_seq]
     result['search_successful'] = True
     for mod in state['mods']:

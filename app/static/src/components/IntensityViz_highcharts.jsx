@@ -48,6 +48,10 @@ class IntensityViz extends React.Component {
 
         this.chart = Highcharts.chart(this.highchart, {
 
+            chart: {
+              type: 'column'
+            },
+
             title: {
                 text: 'Fragment Abundance Map'
             },
@@ -129,7 +133,7 @@ class IntensityViz extends React.Component {
         this.chart.update({
 
              xAxis: {
-                    categories: this.props.state.searchResult['sequence'], title: {text: 'Residue'}},
+                    categories: this.props.state.searchResult['labels'], title: {text: 'Residue'}},
             series: [{
                 name: 'All ions',
                 data: hcData[0]

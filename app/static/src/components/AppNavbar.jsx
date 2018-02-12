@@ -24,10 +24,10 @@ class AppNavbar extends React.Component {
                     </Navbar.Header>
                     <Navbar.Collapse>
                         <Nav>
-                            <NavItem active={this.props.here == 'intensity'} href="/">Fragment Intensity</NavItem>
+                            <NavItem active={this.props.here == 'intensity'} href="/">Fragment Abundance</NavItem>
                             <NavItem active={this.props.here == 'chargestate'} href="/chargestate">Charge State
                                 Analysis</NavItem>
-                            <NavItem active={this.props.here == 'wildcard'} href="/wildcard">Iterative Search
+                            <NavItem active={this.props.here == 'wildcard'} href="/wildcard">Mass-Shift Tolerance Search
                             </NavItem>
                             <NavItem active={this.props.here == 'hem'} href="/hem">Hydrogen Elimination Monitoring
                             </NavItem>
