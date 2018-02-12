@@ -7,7 +7,7 @@
     <!-- Latest compiled and minified CSS -->
 </head>
 <link href="../static/dist/cdn/bootstrap.min.css" rel="stylesheet">
-<script   src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='dist/cdn/jquery.min.js') }}"></script>
 <script src={{ url_for('static', filename='dist/cdn/handsontable.full.min.js') }}></script>
 <script src="{{ url_for('static', filename='dist/manifest.js') }}"></script>
 <script src="{{ url_for('static', filename='dist/vendor.js') }}"></script>
